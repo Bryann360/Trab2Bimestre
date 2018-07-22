@@ -18,5 +18,5 @@ public interface CandidatoVagaDao {
     public void insert(CandidatoVaga CandidatoVaga) throws PersistenceException;
     public boolean update(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao, CandidatoVaga CandidatoVaga) throws PersistenceException;
     public List<CandidatoVaga> listAll() throws PersistenceException;
-    //public Loja getLojaByCod(Long Cod_Loja) throws PersistenceException;
+
 }

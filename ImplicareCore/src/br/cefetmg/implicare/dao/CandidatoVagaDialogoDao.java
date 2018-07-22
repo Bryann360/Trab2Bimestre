@@ -17,6 +17,6 @@ public interface CandidatoVagaDialogoDao {
     
     public void insert(CandidatoVagaDialogo CandidatoVagaDialogo) throws PersistenceException;
     public List<CandidatoVagaDialogo> listAll() throws PersistenceException;
-    //public Loja getLojaByCod(Long Cod_Loja) throws PersistenceException;
+
     
 }
