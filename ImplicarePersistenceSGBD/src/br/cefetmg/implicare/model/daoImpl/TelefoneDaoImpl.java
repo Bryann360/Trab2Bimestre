@@ -57,6 +57,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
             System.out.println(ex.toString());
         }
     }
+    
     @Override
     public boolean update(long CPF_CNPJ, String Num_Telefone, Telefone Telefone) throws PersistenceException{
         try {
@@ -110,7 +111,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
     }
     
     @Override
-    public List<Telefone> getTelefone(long CPF_CNPJ, String Num_Telefone) throws PersistenceException{
+    public List<Telefone> getTelefone(long CPF_CNPJ) throws PersistenceException{
         List<Telefone> ListTel;
         ListTel = null;
         Telefone Tel = new Telefone();
@@ -119,12 +120,11 @@ public class TelefoneDaoImpl implements TelefoneDao{
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
             
             String SQL = "SELECT * FROM Telefone"
-                    + "WHERE CPF_CNPJ = ?, Num_Telefone = ?";
+                    + "WHERE CPF_CNPJ = ?";
             
             PreparedStatement ps = connection.prepareStatement(SQL);
             
             ps.setLong(1, CPF_CNPJ);
-            ps.setString(2, Num_Telefone);
             
             ResultSet rs = ps.executeQuery(SQL);
             while (rs.next()) {

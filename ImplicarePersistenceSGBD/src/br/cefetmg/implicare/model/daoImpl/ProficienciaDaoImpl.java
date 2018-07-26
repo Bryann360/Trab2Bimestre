@@ -5,8 +5,8 @@
  */
 package br.cefetmg.implicare.model.daoImpl;
 
-import br.cefetmg.implicare.dao.CargoDao;
-import br.cefetmg.implicare.model.domain.Cargo;
+import br.cefetmg.implicare.dao.ProficienciaDao;
+import br.cefetmg.implicare.model.domain.Proficiencia;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,27 +20,27 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class CargoDaoImpl implements CargoDao{
+public class ProficienciaDaoImpl implements ProficienciaDao {
 
     @Override
-    public List<Cargo> listAll() throws PersistenceException {
+    public List<Proficiencia> listAll() throws PersistenceException {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
 
-            String sql = "SELECT * FROM Cargo ORDER BY Nom_Cargo;";
+            String sql = "SELECT * FROM Proficiencia ORDER BY Nivel_Proficiencia;";
 
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
-            List<Cargo> listAll = new ArrayList<>();
+            List<Proficiencia> listAll = new ArrayList<>();
             
             if (rs.next()) {
                 do {
-                    Cargo Car = new Cargo();
-                    Car.setCod_Cargo(rs.getInt("Cod_Cargo"));
-                    Car.setNom_Cargo(rs.getString("Nom_Cargo"));
-                    listAll.add(Car);
+                    Proficiencia Prof = new Proficiencia();
+                    Prof.setCod_Proficiencia(rs.getInt("Cod_Proficiencia"));
+                    Prof.setNivel_Proficiencia(rs.getString("Nivel_Proficiencia"));
+                    listAll.add(Prof);
                 } while (rs.next());
             }
 
@@ -56,7 +56,7 @@ public class CargoDaoImpl implements CargoDao{
     }
 
     @Override
-    public Cargo getCargoCod(int Cod_Cargo) throws PersistenceException {
+    public Proficiencia getLojaByCod(int Cod_Proficiencia) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

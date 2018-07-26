@@ -5,8 +5,8 @@
  */
 package br.cefetmg.implicare.model.daoImpl;
 
-import br.cefetmg.implicare.dao.CargoDao;
-import br.cefetmg.implicare.model.domain.Cargo;
+import br.cefetmg.implicare.dao.CompetenciaDao;
+import br.cefetmg.implicare.model.domain.Competencia;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,27 +20,27 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class CargoDaoImpl implements CargoDao{
+public class CompetenciaDaoImpl implements CompetenciaDao {
 
     @Override
-    public List<Cargo> listAll() throws PersistenceException {
+    public List<Competencia> listAll() throws PersistenceException {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
 
-            String sql = "SELECT * FROM Cargo ORDER BY Nom_Cargo;";
+            String sql = "SELECT * FROM Competencia ORDER BY Nom_Competencia;";
 
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
-            List<Cargo> listAll = new ArrayList<>();
+            List<Competencia> listAll = new ArrayList<>();
             
             if (rs.next()) {
                 do {
-                    Cargo Car = new Cargo();
-                    Car.setCod_Cargo(rs.getInt("Cod_Cargo"));
-                    Car.setNom_Cargo(rs.getString("Nom_Cargo"));
-                    listAll.add(Car);
+                    Competencia Comp = new Competencia();
+                    Comp.setCod_Competencia(rs.getInt("Cod_Competencia"));
+                    Comp.setNom_Competencia(rs.getString("Nom_Area_Estudo"));
+                    listAll.add(Comp);
                 } while (rs.next());
             }
 
@@ -56,7 +56,7 @@ public class CargoDaoImpl implements CargoDao{
     }
 
     @Override
-    public Cargo getCargoCod(int Cod_Cargo) throws PersistenceException {
+    public Competencia getCompetenciaCod(int Cod_Competencia) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

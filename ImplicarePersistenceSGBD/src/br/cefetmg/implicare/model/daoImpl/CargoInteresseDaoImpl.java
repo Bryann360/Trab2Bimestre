@@ -1,0 +1,117 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.cefetmg.implicare.model.daoImpl;
+
+import br.cefetmg.implicare.dao.CargoInteresseDao;
+import br.cefetmg.implicare.model.domain.CargoInteresse;
+import br.cefetmg.implicare.model.exception.PersistenceException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ *
+ * @author Gabriel
+ */
+public class CargoInteresseDaoImpl implements CargoInteresseDao {
+
+    @Override
+    public void insert(CargoInteresse CargoInteresse) throws PersistenceException {
+        try {
+            if (CargoInteresse == null) {
+                throw new PersistenceException("Entidade não pode ser nula.");
+            }
+            Long Seq_CargoInteresse;
+                    
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+
+            String sql = "INSERT INTO CargoInteresse (CPF, Cod_Cargo) "
+                    + "VALUES(?,?) RETURNING Seq_CargoInteresse";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+           
+            ps.setLong(1, CargoInteresse.getCPF());
+            ps.setInt(2, CargoInteresse.getCod_Cargo());
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Seq_CargoInteresse = rs.getLong("Seq_CargoInteresse");
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+        }
+    }
+
+    @Override
+    public boolean delete(long CPF, int Cod_Cargo) throws PersistenceException {
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            
+            String SQL = "DELETE FROM CargoInteresse"
+                    + "WHERE CPF = ?, Cod_Cargo = ?";
+            
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            
+            ps.setLong(1, CPF);
+            ps.setInt(2, Cod_Cargo);
+            
+            ps.executeQuery(SQL);
+            ps.close();
+            connection.close();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return false;
+        }
+    }
+
+    @Override
+    public List<CargoInteresse> getCargoInteresse(long CPF) throws PersistenceException {
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+
+            String sql = "SELECT * FROM CargoInteresse ORDER BY Cod_Cargo;";
+
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+
+            List<CargoInteresse> CargoInt = new ArrayList<>();
+            
+            if (rs.next()) {
+                do {
+                    CargoInteresse Car = new CargoInteresse();
+                    Car.setCPF(rs.getLong("CPF"));
+                    Car.setCod_Cargo(rs.getInt("Cod_Cargo"));
+                    CargoInt.add(Car);
+                } while (rs.next());
+            }
+
+            rs.close();
+            pstmt.close();
+            connection.close();
+
+            return CargoInt;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+    
+}

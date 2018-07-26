@@ -5,8 +5,8 @@
  */
 package br.cefetmg.implicare.model.daoImpl;
 
-import br.cefetmg.implicare.dao.CargoDao;
-import br.cefetmg.implicare.model.domain.Cargo;
+import br.cefetmg.implicare.dao.AreaEstudoDao;
+import br.cefetmg.implicare.model.domain.AreaEstudo;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,27 +20,27 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class CargoDaoImpl implements CargoDao{
+public class AreaEstudoDaoImpl implements AreaEstudoDao {
 
     @Override
-    public List<Cargo> listAll() throws PersistenceException {
+    public List<AreaEstudo> listAll() throws PersistenceException {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
 
-            String sql = "SELECT * FROM Cargo ORDER BY Nom_Cargo;";
+            String sql = "SELECT * FROM AreaEstudo ORDER BY Nom_Area_Estudo;";
 
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
-            List<Cargo> listAll = new ArrayList<>();
+            List<AreaEstudo> listAll = new ArrayList<>();
             
             if (rs.next()) {
                 do {
-                    Cargo Car = new Cargo();
-                    Car.setCod_Cargo(rs.getInt("Cod_Cargo"));
-                    Car.setNom_Cargo(rs.getString("Nom_Cargo"));
-                    listAll.add(Car);
+                    AreaEstudo Area = new AreaEstudo();
+                    Area.setCod_Area_Estudo(rs.getInt("Cod_Area_Estudo"));
+                    Area.setNom_Area_Estudo(rs.getString("Nom_Area_Estudo"));
+                    listAll.add(Area);
                 } while (rs.next());
             }
 
@@ -56,7 +56,7 @@ public class CargoDaoImpl implements CargoDao{
     }
 
     @Override
-    public Cargo getCargoCod(int Cod_Cargo) throws PersistenceException {
+    public AreaEstudo getAreaEstudoCod(int Cod_Area_Estudo) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
