@@ -8,12 +8,11 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.UsuarioDao;
 import br.cefetmg.implicare.model.domain.Usuario;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.awt.image.BufferedImage;
 
 /**
  *
@@ -29,12 +28,11 @@ public class UsuarioDaoImpl implements UsuarioDao{
             }
             Long Seq_Usuario;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "INSERT INTO Vaga (CPF_CNPJ, Email, Senha, Foto,"
+            String sql = "INSERT INTO Usuario (CPF_CNPJ, Email, Senha, Foto,"
                     + "Cod_Cep, Endereco, Desc_Usuario) "
-                    + "VALUES(?,?,?,?,?,?,,?) RETURNING Seq_Usuario";
+                    + "VALUES(?,?,?,?,?,?,?) RETURNING Seq_Usuario";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             

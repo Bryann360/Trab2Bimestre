@@ -8,8 +8,8 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.CargoInteresseDao;
 import br.cefetmg.implicare.model.domain.CargoInteresse;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,8 +31,7 @@ public class CargoInteresseDaoImpl implements CargoInteresseDao {
             }
             Long Seq_CargoInteresse;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO CargoInteresse (CPF, Cod_Cargo) "
                     + "VALUES(?,?) RETURNING Seq_CargoInteresse";
@@ -60,8 +59,7 @@ public class CargoInteresseDaoImpl implements CargoInteresseDao {
     @Override
     public boolean delete(long CPF, int Cod_Cargo) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "DELETE FROM CargoInteresse"
                     + "WHERE CPF = ?, Cod_Cargo = ?";
@@ -84,13 +82,13 @@ public class CargoInteresseDaoImpl implements CargoInteresseDao {
     @Override
     public List<CargoInteresse> getCargoInteresse(long CPF) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM CargoInteresse ORDER BY Cod_Cargo;";
+            String sql = "SELECT * FROM CargoInteresse ORDER BY Cod_Cargo WHERE CPF = ?;";
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, CPF);
+            ResultSet rs = ps.executeQuery();
 
             List<CargoInteresse> CargoInt = new ArrayList<>();
             
@@ -104,7 +102,7 @@ public class CargoInteresseDaoImpl implements CargoInteresseDao {
             }
 
             rs.close();
-            pstmt.close();
+            ps.close();
             connection.close();
 
             return CargoInt;

@@ -8,13 +8,11 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.EmpresaDao;
 import br.cefetmg.implicare.model.domain.Empresa;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
@@ -30,8 +28,7 @@ public class EmpresaDaoImpl implements EmpresaDao {
             }
             Long Seq_Empresa;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO Empresa (CNPJ, Nom_Razao_Social, Nome_Fantasia"
                     + "VALUES(?,?,?) RETURNING Seq_Empresa";
@@ -60,8 +57,7 @@ public class EmpresaDaoImpl implements EmpresaDao {
     @Override
     public boolean update(Long CNPJ, Empresa Empresa) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "UPDATE Empresa SET Nom_Razao_Social, Nom_Fantasia"
                     + "WHERE CNPJ = ?";
@@ -86,8 +82,7 @@ public class EmpresaDaoImpl implements EmpresaDao {
     @Override
     public Empresa getEmpresaCod(Long CNPJ) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM Empresa WHERE CNPJ = ?";
 

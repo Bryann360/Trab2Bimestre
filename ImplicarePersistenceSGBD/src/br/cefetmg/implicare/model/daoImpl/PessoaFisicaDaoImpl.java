@@ -8,13 +8,11 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.PessoaFisicaDao;
 import br.cefetmg.implicare.model.domain.PessoaFisica;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -30,8 +28,7 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
             }
             Long Seq_PessoaFisica;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO Pessoa_Fisica (CPF, Nome, Data_Nascimento) "
                     + "VALUES(?,?,?) RETURNING Seq_Telefone";
@@ -60,8 +57,7 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
     @Override
     public boolean update(Long CPF, PessoaFisica PessoaFisica) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "UPDATE PessoaFisica SET Nome = ?, Data_Nascimento = ?"
                     + "WHERE CPF = ?";

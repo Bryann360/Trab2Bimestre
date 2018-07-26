@@ -8,8 +8,8 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.AreaEstudoDao;
 import br.cefetmg.implicare.model.domain.AreaEstudo;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,13 +25,12 @@ public class AreaEstudoDaoImpl implements AreaEstudoDao {
     @Override
     public List<AreaEstudo> listAll() throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM AreaEstudo ORDER BY Nom_Area_Estudo;";
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
             List<AreaEstudo> listAll = new ArrayList<>();
             
@@ -45,7 +44,7 @@ public class AreaEstudoDaoImpl implements AreaEstudoDao {
             }
 
             rs.close();
-            pstmt.close();
+            ps.close();
             connection.close();
 
             return listAll;

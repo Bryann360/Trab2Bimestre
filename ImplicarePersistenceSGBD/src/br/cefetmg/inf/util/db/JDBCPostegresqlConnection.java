@@ -9,13 +9,32 @@ package br.cefetmg.inf.util.db;
  *
  * @author Gabriel
  */
-public class JDBCPostegresqlConnection {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sun.security.util.Password;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class JDBCPostegresqlConnection extends JDBCPassword implements JDBCConnectionFactory {
+
+    private final static String dbDriver = "org.postgresql.Driver";
+
+    public JDBCPostegresqlConnection() {
+    }
+
+    @Override
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
+        Class.forName(dbDriver);
+        return DriverManager.getConnection(dbURL, user, pass);
     }
     
+    public static void main(String[] args) {
+        try {
+            JDBCConnectionFactory cf = new JDBCPostegresqlConnection();            
+            cf.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(JDBCPostegresqlConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

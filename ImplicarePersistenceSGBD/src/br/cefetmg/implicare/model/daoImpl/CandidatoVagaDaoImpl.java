@@ -8,9 +8,9 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.CandidatoVagaDao;
 import br.cefetmg.implicare.model.domain.CandidatoVaga;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,8 +30,7 @@ public class CandidatoVagaDaoImpl implements CandidatoVagaDao {
             }
             Long Seq_CandidatoVaga;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO CandidatoVaga (CPF, Cod_Cargo, CNPJ,"
                     + "Dat_Publicacao, Status_Candidato) "
@@ -63,12 +62,11 @@ public class CandidatoVagaDaoImpl implements CandidatoVagaDao {
     @Override
     public boolean update(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao, CandidatoVaga CandidatoVaga) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "UPDATE CandidatoVaga SET Status_Candidato = ? "
-                    + "WHERE CPF = ? , Cod_Cargo,"
-                    + "CNPJ, Dat_Publicacao";
+                    + "WHERE CPF = ? , Cod_Cargo = ?,"
+                    + "CNPJ = ?, Dat_Publicacao = ?";
             
             PreparedStatement ps = connection.prepareStatement(SQL);
             
@@ -94,8 +92,7 @@ public class CandidatoVagaDaoImpl implements CandidatoVagaDao {
         List<CandidatoVaga> ListCand = null;
         CandidatoVaga Cand = new CandidatoVaga();
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "SELECT * FROM CandidatoVaga"
                     + "WHERE Cod_Cargo = ?, CNPJ = ?, Dat_Publicacao = ?";

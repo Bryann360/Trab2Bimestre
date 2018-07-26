@@ -8,8 +8,8 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.TelefoneDao;
 import br.cefetmg.implicare.model.domain.Telefone;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,8 +29,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
             }
             Long Seq_Telefone;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO Telefone (CPF_CNPJ, Num_Telefone, Tipo_Telefone, DDD,"
                     + "Ramal) VALUES(?,?,?,?,?) RETURNING Seq_Telefone";
@@ -61,8 +60,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
     @Override
     public boolean update(long CPF_CNPJ, String Num_Telefone, Telefone Telefone) throws PersistenceException{
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "UPDATE Telefone SET Num_Telefone = ?, Tipo_Telefone = ?, DDD = ?, Ramal = ? "
                     + "WHERE CPF_CNPJ = ?, Num_Telefone = ?";
@@ -89,8 +87,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
     @Override
     public boolean delete(long CPF_CNPJ, String Num_Telefone) throws PersistenceException{
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "DELETE FROM Telefone"
                     + "WHERE CPF_CNPJ = ?, Num_Telfone = ?";
@@ -116,8 +113,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
         ListTel = null;
         Telefone Tel = new Telefone();
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "SELECT * FROM Telefone"
                     + "WHERE CPF_CNPJ = ?";

@@ -8,8 +8,8 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.CompetenciaPessoaFisicaDao;
 import br.cefetmg.implicare.model.domain.CompetenciaPessoaFisica;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,8 +30,7 @@ public class CompetenciaPessoaFisicaDaoImpl implements CompetenciaPessoaFisicaDa
             }
             Long Seq_CompetenciaPessoaFisica;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO CompetenciaPessoaFisica (CPF, Cod_Competencia, Cod_Proficiencia) "
                     + "VALUES(?,?,?) RETURNING Seq_CompetenciaPessoaFisica";
@@ -60,8 +59,7 @@ public class CompetenciaPessoaFisicaDaoImpl implements CompetenciaPessoaFisicaDa
     @Override
     public boolean delete(long CPF, int Cod_Competencia) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "DELETE FROM CompetenciaPessoaFisica"
                     + "WHERE CPF = ?, Cod_Competencia = ?";

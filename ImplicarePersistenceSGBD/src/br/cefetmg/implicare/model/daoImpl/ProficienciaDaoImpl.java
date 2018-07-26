@@ -8,8 +8,8 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.ProficienciaDao;
 import br.cefetmg.implicare.model.domain.Proficiencia;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,13 +25,12 @@ public class ProficienciaDaoImpl implements ProficienciaDao {
     @Override
     public List<Proficiencia> listAll() throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM Proficiencia ORDER BY Nivel_Proficiencia;";
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
             List<Proficiencia> listAll = new ArrayList<>();
             
@@ -45,7 +44,7 @@ public class ProficienciaDaoImpl implements ProficienciaDao {
             }
 
             rs.close();
-            pstmt.close();
+            ps.close();
             connection.close();
 
             return listAll;

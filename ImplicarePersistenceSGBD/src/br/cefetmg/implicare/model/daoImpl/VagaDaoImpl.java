@@ -8,6 +8,7 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.VagaDao;
 import br.cefetmg.implicare.model.domain.Vaga;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -30,8 +31,7 @@ public class VagaDaoImpl implements VagaDao{
             }
             Long Seq_Vaga;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO Vaga (CNPJ, Cod_Cargo, Dat_Publicacao, Num_Vagas,"
                     + "Carga_Horaria, Remuneracao, Desc_Vaga, Status_Vaga) "
@@ -71,8 +71,7 @@ public class VagaDaoImpl implements VagaDao{
     @Override
     public boolean delete(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException{
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "DELETE FROM Vaga"
                     + "WHERE CNPJ = ?, Cod_Cargo = ?, Dat_Publicacao = ?";

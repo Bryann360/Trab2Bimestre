@@ -8,8 +8,8 @@ package br.cefetmg.implicare.model.daoImpl;
 import br.cefetmg.implicare.dao.FormacaoAcademicaDao;
 import br.cefetmg.implicare.model.domain.FormacaoAcademica;
 import br.cefetmg.implicare.model.exception.PersistenceException;
+import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,8 +30,7 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
             }
             Long Seq_FormacaoAcademica;
                     
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/implicare", "postgres", "123456");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "INSERT INTO FormacaoAcademica (CPF, Seq_Formacao, Instituicao_Ensino, Cod_Area_Estudo,"
                     + "Atividades_Desenvolvidas, Data_Inicio, Data_Termino, Desc_Formacao_Academica) "
@@ -66,8 +65,7 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
     @Override
     public boolean update(long CPF, int Seq_Formacao, FormacaoAcademica FormacaoAcademica) throws PersistenceException {
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "UPDATE FormacaoAcademica SET Seq_Formacao = ?, Instituicao_Ensino = ?, "
                     + "Cod_Area_Estudo = ? , Atividades_Desenvolvidas = ?, Data_Inicio = ?, "
@@ -99,13 +97,13 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
     @Override
     public List<FormacaoAcademica> getFormacaoAcademica(long CPF) throws PersistenceException {
          try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/comprasevendas", "postgres", "123");
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM FormacaoAcademica ORDER BY Seq_Formacao;";
+            String sql = "SELECT * FROM FormacaoAcademica WHERE CPF = ? ORDER BY Seq_Formacao;";
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, CPF);
+            ResultSet rs = ps.executeQuery();
 
             List<FormacaoAcademica> FormAcad = new ArrayList<>();
             
@@ -125,7 +123,7 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
             }
 
             rs.close();
-            pstmt.close();
+            ps.close();
             connection.close();
 
             return FormAcad;
