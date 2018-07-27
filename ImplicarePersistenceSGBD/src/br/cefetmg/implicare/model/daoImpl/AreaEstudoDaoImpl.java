@@ -56,7 +56,32 @@ public class AreaEstudoDaoImpl implements AreaEstudoDao {
 
     @Override
     public AreaEstudo getAreaEstudoCod(int Cod_Area_Estudo) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM AreaEstudo WHERE Cod_Area_Estudo = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, Cod_Area_Estudo);
+            ResultSet rs = ps.executeQuery();
+
+            AreaEstudo Area = new AreaEstudo();
+            
+            if (rs.next()) {
+                Area.setCod_Area_Estudo(rs.getInt("Cod_Area_Estudo"));
+                Area.setNom_Area_Estudo(rs.getString("Nom_Area_Estudo"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Area;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
     
 }

@@ -5,8 +5,8 @@
  */
 package br.cefetmg.implicare.model.daoImpl;
 
-import br.cefetmg.implicare.dao.CompetenciaDao;
-import br.cefetmg.implicare.model.domain.Competencia;
+import br.cefetmg.implicare.dao.CidadeDao;
+import br.cefetmg.implicare.model.domain.Cidade;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
@@ -20,26 +20,28 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class CompetenciaDaoImpl implements CompetenciaDao {
+public class CidadeDaoImpl implements CidadeDao {
 
     @Override
-    public List<Competencia> listAll() throws PersistenceException {
+    public List<Cidade> getCidades(int Cod_Estado) throws PersistenceException {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Competencia ORDER BY Nom_Competencia;";
+            String sql = "SELECT * FROM Cidade WHERE Cod_Estado = ? ORDER BY Nom_Cidade;";
 
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, Cod_Estado);
             ResultSet rs = ps.executeQuery();
 
-            List<Competencia> listAll = new ArrayList<>();
+            List<Cidade> Cidade = new ArrayList<>();
             
             if (rs.next()) {
                 do {
-                    Competencia Comp = new Competencia();
-                    Comp.setCod_Competencia(rs.getInt("Cod_Competencia"));
-                    Comp.setNom_Competencia(rs.getString("Nom_Area_Estudo"));
-                    listAll.add(Comp);
+                    Cidade Cid = new Cidade();
+                    Cid.setCod_Estado(rs.getInt("Cod_Estado"));
+                    Cid.setCod_Cidade(rs.getInt("Cod_Cidade"));
+                    Cid.setNom_Cidade(rs.getString("Nom_Cidade"));
+                    Cidade.add(Cid);
                 } while (rs.next());
             }
 
@@ -47,7 +49,7 @@ public class CompetenciaDaoImpl implements CompetenciaDao {
             ps.close();
             connection.close();
 
-            return listAll;
+            return Cidade;
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.toString());
             return null;
@@ -55,28 +57,32 @@ public class CompetenciaDaoImpl implements CompetenciaDao {
     }
 
     @Override
-    public Competencia getCompetenciaCod(int Cod_Competencia) throws PersistenceException {
+    public Cidade getCidadeCod(int Cod_Estado, int Cod_Cidade) throws PersistenceException {
         try {
            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Competencia WHERE Cod_Competencia = ?";
+            String sql = "SELECT * FROM Cidade WHERE Cod_Estado = ?, Cod_Cidade = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, Cod_Competencia);
+            
+            ps.setLong(1, Cod_Estado);
+            ps.setInt(2, Cod_Cidade);
+            
             ResultSet rs = ps.executeQuery();
 
-            Competencia Comp = new Competencia();
+            Cidade Cid = new Cidade();
             
             if (rs.next()) {
-                Comp.setCod_Competencia(rs.getInt("Cod_Competencia"));
-                Comp.setNom_Competencia(rs.getString("Nom_Competencia"));
+                Cid.setCod_Estado(rs.getInt("Cod_Estado"));
+                Cid.setCod_Cidade(rs.getInt("Cod_Cidade"));
+                Cid.setNom_Cidade(rs.getString("Nom_Cidade"));
             }
 
             rs.close();
             ps.close();
             connection.close();
 
-            return Comp;
+            return Cid;
             
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.toString());

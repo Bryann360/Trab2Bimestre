@@ -62,7 +62,32 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
     @Override
     public boolean update(Long CPF_CNPJ, Usuario Usuario) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+            
+            String SQL = "UPDATE Usuario SET Email = ?, Senha = ?, Foto = ?, "
+                    + "Cod_CEP, Endereco = ?, Desc_Usuario = ? "
+                    + "WHERE CPF_CNPJ = ?";
+            
+            PreparedStatement ps = connection.prepareStatement(SQL);
+       
+            ps.setString(1, Usuario.getEmail());
+            ps.setString(2, Usuario.getSenha());
+            //ps.setString(2, Usuario.getFoto());
+            ps.setLong(4, Usuario.getCod_CEP());
+            ps.setString(5, Usuario.getEndereco());
+            ps.setString(6, Usuario.getDesc_Usuario());
+            ps.setLong(7, CPF_CNPJ);
+            
+            ps.executeQuery(SQL);
+            ps.close();
+            connection.close();
+            return true;
+            
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            return false;
+        }
     }
 
     @Override

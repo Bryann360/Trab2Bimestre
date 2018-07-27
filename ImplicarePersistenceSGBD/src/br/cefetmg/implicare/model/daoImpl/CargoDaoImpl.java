@@ -56,7 +56,32 @@ public class CargoDaoImpl implements CargoDao{
 
     @Override
     public Cargo getCargoCod(int Cod_Cargo) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM Cargo WHERE Cod_Cargo = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, Cod_Cargo);
+            ResultSet rs = ps.executeQuery();
+
+            Cargo Car = new Cargo();
+            
+            if (rs.next()) {
+                Car.setCod_Cargo(rs.getInt("Cod_Cargo"));
+                Car.setNom_Cargo(rs.getString("Nom_Cargo"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Car;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
     
 }

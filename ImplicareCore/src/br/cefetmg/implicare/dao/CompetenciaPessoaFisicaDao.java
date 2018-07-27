@@ -16,5 +16,5 @@ import java.util.List;
 public interface CompetenciaPessoaFisicaDao {
     public void insert(CompetenciaPessoaFisica CompetenciaPessoaFisica) throws PersistenceException;
     public boolean delete(long CPF, int Cod_Competencia) throws PersistenceException;
-    public List<CompetenciaPessoaFisica> listAll() throws PersistenceException;  
+    public List<CompetenciaPessoaFisica> getCompetenciaPessoaFisica(long CPF) throws PersistenceException;  
 }

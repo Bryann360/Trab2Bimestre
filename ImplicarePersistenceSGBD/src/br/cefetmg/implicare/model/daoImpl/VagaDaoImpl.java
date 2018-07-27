@@ -11,7 +11,6 @@ import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,8 +63,35 @@ public class VagaDaoImpl implements VagaDao{
     }
     
     @Override
-    public boolean update(long CNPJ, int Cod_Cargo, Date Dat_Publicacao,Vaga Vaga) throws PersistenceException{return false;
-    
+    public boolean update(long CNPJ, int Cod_Cargo, Date Dat_Publicacao,Vaga Vaga) throws PersistenceException{
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+            
+            String SQL = "UPDATE Vaga SET Cod_Cargo = ?, Num_Vagas = ?, Carga_Horaria = ?,"
+                    + "Remuneracao = ?, Desc_Vaga = ?, Status_Vaga = ?"
+                    + " WHERE CNPJ = ?, Cod_Cargo = ?, Dat_Publicacao = ?";
+            
+            PreparedStatement ps = connection.prepareStatement(SQL);
+       
+            ps.setInt(1, Vaga.getCod_Cargo());
+            ps.setInt(2, Vaga.getNum_Vagas());
+            ps.setInt(3, Vaga.getCarga_Horaria());
+            ps.setDouble(4, Vaga.getRemuneracao());
+            ps.setString(5, Vaga.getDesc_Vaga());
+            ps.setInt(6, Vaga.getStatus_Vaga());
+            ps.setLong(7, CNPJ);
+            ps.setInt(8, Cod_Cargo);
+            ps.setDate(9, Dat_Publicacao);
+            
+            ps.executeQuery(SQL);
+            ps.close();
+            connection.close();
+            return true;
+            
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            return false;
+        }
     }
     
     @Override

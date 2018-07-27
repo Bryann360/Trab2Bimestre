@@ -5,8 +5,8 @@
  */
 package br.cefetmg.implicare.model.daoImpl;
 
-import br.cefetmg.implicare.dao.CompetenciaDao;
-import br.cefetmg.implicare.model.domain.Competencia;
+import br.cefetmg.implicare.dao.EstadoDao;
+import br.cefetmg.implicare.model.domain.Estado;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import java.sql.Connection;
@@ -20,26 +20,26 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class CompetenciaDaoImpl implements CompetenciaDao {
+public class EstadoDaoImpl implements EstadoDao {
 
     @Override
-    public List<Competencia> listAll() throws PersistenceException {
+    public List<Estado> listAll() throws PersistenceException {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Competencia ORDER BY Nom_Competencia;";
+            String sql = "SELECT * FROM Estado ORDER BY Nom_Estado;";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            List<Competencia> listAll = new ArrayList<>();
+            List<Estado> listAll = new ArrayList<>();
             
             if (rs.next()) {
                 do {
-                    Competencia Comp = new Competencia();
-                    Comp.setCod_Competencia(rs.getInt("Cod_Competencia"));
-                    Comp.setNom_Competencia(rs.getString("Nom_Area_Estudo"));
-                    listAll.add(Comp);
+                    Estado Est = new Estado();
+                    Est.setCod_Estado(rs.getInt("Cod_Estado"));
+                    Est.setNom_Estado(rs.getString("Nom_Estado"));
+                    listAll.add(Est);
                 } while (rs.next());
             }
 
@@ -55,28 +55,28 @@ public class CompetenciaDaoImpl implements CompetenciaDao {
     }
 
     @Override
-    public Competencia getCompetenciaCod(int Cod_Competencia) throws PersistenceException {
+    public Estado getEstadoCod(int Cod_Estado) throws PersistenceException {
         try {
            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Competencia WHERE Cod_Competencia = ?";
+            String sql = "SELECT * FROM Estado WHERE Cod_Estado = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, Cod_Competencia);
+            ps.setLong(1, Cod_Estado);
             ResultSet rs = ps.executeQuery();
 
-            Competencia Comp = new Competencia();
+            Estado Est = new Estado();
             
             if (rs.next()) {
-                Comp.setCod_Competencia(rs.getInt("Cod_Competencia"));
-                Comp.setNom_Competencia(rs.getString("Nom_Competencia"));
+                Est.setCod_Estado(rs.getInt("Cod_Estado"));
+                Est.setNom_Estado(rs.getString("Nom_Razao_Social"));
             }
 
             rs.close();
             ps.close();
             connection.close();
 
-            return Comp;
+            return Est;
             
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.toString());

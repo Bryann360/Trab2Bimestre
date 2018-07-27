@@ -80,8 +80,37 @@ public class CompetenciaPessoaFisicaDaoImpl implements CompetenciaPessoaFisicaDa
     }
 
     @Override
-    public List<CompetenciaPessoaFisica> listAll() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<CompetenciaPessoaFisica> getCompetenciaPessoaFisica(long CPF) throws PersistenceException {
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM CompetenciaPessoaFisica WHERE CPF = ? ORDER BY Cod_Competencia;";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, CPF);
+            ResultSet rs = ps.executeQuery();
+
+            List<CompetenciaPessoaFisica> Competencia = new ArrayList<>();
+            
+            if (rs.next()) {
+                do {
+                    CompetenciaPessoaFisica Comp = new CompetenciaPessoaFisica();
+                    Comp.setCPF(rs.getLong("CPF"));
+                    Comp.setCod_Competencia(rs.getInt("Cod_Competencia"));
+                    Comp.setCod_Proficiencia(rs.getInt("Cod_Proficiencia"));
+                    Competencia.add(Comp);
+                } while (rs.next());
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Competencia;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
     
 }
