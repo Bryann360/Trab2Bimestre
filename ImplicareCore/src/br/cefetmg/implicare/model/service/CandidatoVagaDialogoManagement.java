@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.cefetmg.implicare.dao;
+package br.cefetmg.implicare.model.service;
 
 import br.cefetmg.implicare.model.domain.CandidatoVagaDialogo;
+import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import java.util.List;
 
 /**
  *
- * @author Gabriel
+ * @author Andre Matheus
  */
-public interface CandidatoVagaDialogoDao {
-    
-    public void insert(CandidatoVagaDialogo CandidatoVagaDialogo) throws PersistenceException;
+public interface CandidatoVagaDialogoManagement {
+    public void insert(CandidatoVagaDialogo CandidatoVagaDialogo) throws BusinessException, PersistenceException;
     public List<CandidatoVagaDialogo> listAll() throws PersistenceException;
-
-    
 }

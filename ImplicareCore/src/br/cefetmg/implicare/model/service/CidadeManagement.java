@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.cefetmg.implicare.dao;
+package br.cefetmg.implicare.model.service;
 
 import br.cefetmg.implicare.model.domain.Cidade;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -11,9 +11,9 @@ import java.util.List;
 
 /**
  *
- * @author Gabriel
+ * @author Andre Matheus
  */
-public interface CidadeDao {
+public interface CidadeManagement {
     public List<Cidade> getCidades(int Cod_Estado) throws PersistenceException;
     public Cidade getCidadeCod(int Cod_Estado, int Cod_Cidade) throws PersistenceException;
 }

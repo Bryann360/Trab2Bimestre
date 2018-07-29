@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.cefetmg.implicare.dao;
+package br.cefetmg.implicare.model.service;
 
 import br.cefetmg.implicare.model.domain.CargoInteresse;
+import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import java.util.List;
 
 /**
  *
- * @author Gabriel
+ * @author Andre Matheus
  */
-public interface CargoInteresseDao {
-    public void insert(CargoInteresse CargoInteresse) throws PersistenceException;
+public interface CargoInteresseManagement {
+    public void insert(CargoInteresse CargoInteresse) throws BusinessException, PersistenceException;
     public boolean delete(long CPF, int Cod_Cargo) throws PersistenceException;
     public List<CargoInteresse> getCargoInteresse(long CPF) throws PersistenceException;
 }

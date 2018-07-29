@@ -7,15 +7,8 @@ package br.cefetmg.implicare.model.service;
 
 /**
  *
- * @author Gabriel
+ * @author Andre Matheus
  */
-public class ImplicareBusiness {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public interface CepManagement {
     
 }

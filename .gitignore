@@ -3,4 +3,15 @@
 /ImplicarePersistenceSGBD/nbproject/private/
 /ImplicareBusiness/nbproject/private/
 /ImplicareCore/nbproject/private/
+<<<<<<< HEAD
 /Implicare/build/
+=======
+/ImplicarePersistenceSGBD/build/
+/ImplicareCore/build/
+/ImplicareCore/dist/
+/ImplicarePersistenceSGBD/dist/
+/Implicare/build/
+/ImplicareBusiness/dist/
+/ImplicareBusiness/build/
+/Implicare/dist/
+>>>>>>> c7d93706941eb3a4ce3f1ec9ed34211981e2b756

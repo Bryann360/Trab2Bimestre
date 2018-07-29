@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.cefetmg.implicare.dao;
+package br.cefetmg.implicare.model.service;
 
 import br.cefetmg.implicare.model.domain.Telefone;
+import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import java.util.List;
 
 /**
  *
- * @author Gabriel
+ * @author Andre Matheus
  */
-public interface TelefoneDao {
-    public void insert(Telefone Telefone) throws PersistenceException;
-    public boolean update(long CPF_CNPJ, String Num_Telefone, Telefone Telefone) throws PersistenceException;
+public interface TelefoneManagement {
+    public void insert(Telefone Telefone) throws BusinessException, PersistenceException;
+    public boolean update(long CPF_CNPJ, String Num_Telefone, Telefone Telefone) throws BusinessException, PersistenceException;
     public boolean delete(long CPF_CNPJ, String Num_Telefone) throws PersistenceException;
     public List<Telefone> getTelefone(long CPF_CNPJ) throws PersistenceException;
 }
