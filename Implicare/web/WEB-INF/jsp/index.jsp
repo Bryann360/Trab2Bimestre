@@ -1,5 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -16,5 +19,13 @@
                 the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
                 welcome page and also update the welcome-file setting in</i>
             <tt>web.xml</tt>.</p>
+        
+            <%@ include file="MainPage.jsp" %>
+            <%@ include file="Login.jsp" %>
+            <%@ include file="PaginaPessoaFisica.jsp" %>
+            <%@ include file="EditarPerfilPessoaFisica.jsp" %>
+            <%@ include file="PaginaPessoaJuridica.jsp" %>
+            
+        
     </body>
 </html>
