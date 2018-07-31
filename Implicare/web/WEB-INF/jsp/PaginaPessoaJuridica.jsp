@@ -23,7 +23,9 @@
             <input type="text" value="Descrição" name="descricao">
             <input type="text" value="Formação Necessária" name="FormNecessaria">
             <input type="text" value="Área de atuação" name="AreaAtuacao">
+            <input type="text" value="Salário" name="Salario">
             <input type="button" value="Criar Vaga" name="BtnCriarVaga">
+            
             
             <br>
             foto empresa

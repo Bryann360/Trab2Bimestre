@@ -12,6 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h6>
+            Vagas <br>
+            Vizualização de vagas aqui-- <br>
+            
+            <h5>Candidatos<br>
+            vizualização dos candidatos
+            </h5>
+        </h6>
     </body>
 </html>

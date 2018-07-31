@@ -13,19 +13,33 @@
     </head>
 
     <body>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <p><i>To display a different welcome page for this project, modify</i>
-            <tt>index.jsp</tt> <i>, or create your own welcome page then change
-                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-                welcome page and also update the welcome-file setting in</i>
-            <tt>web.xml</tt>.</p>
+        <p>Página destinada a verificação das paginas jsp</p>
         
+        <br><h1>Pagina principal</h1>
             <%@ include file="MainPage.jsp" %>
+            <br><br>
+        <br><h1>Pagina login</h1>
             <%@ include file="Login.jsp" %>
+            <br><br>
+        <br><h1>Pagina Principal de pessoa fisica</h1>    
             <%@ include file="PaginaPessoaFisica.jsp" %>
+            <br><br>
+        <br><h1>Pagina edição de perfil pessoa fisica</h1>    
             <%@ include file="EditarPerfilPessoaFisica.jsp" %>
+            <br><br>
+        <br><h1>Pagina Principal de pessoa juridica</h1>    
             <%@ include file="PaginaPessoaJuridica.jsp" %>
-            
-        
+            <br><br>
+        <br><h1>Pagina de vizualização de candidatos</h1>    
+            <%@ include file="VizualizacaoCandidatos.jsp" %>    
+            <br><br>
+        <br><h1>Pagina de vizualização do perfil individual do candidato</h1>    
+            <%@ include file="VizualizacaoPerfilCandidato.jsp" %>  
+            <br><br>
+        <br><h1>Pagina de Chat da empresa com candidato</h1>    
+            <%@ include file="ChatEmpresaCandidato.jsp" %>  
+            <br><br>
+        <br><h1>Pagina de cadastro de pessoa juridica</h1>    
+            <%@ include file="CadastroPessoaJuridica.jsp" %>  
     </body>
 </html>

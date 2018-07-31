@@ -13,22 +13,32 @@
     </head>
     <body>
         <div>
-            <h4>Vagas
-
-            área de listagem de vagas
-            
-            <h1>Nova Vaga</h1>
-            <input type="text" value="Titulo" name="Titulo">
-            <input type="text" value="Experiência Necessária" name="ExpNecessaria">
-            <input type="text" value="Descrição" name="descricao">
-            <input type="text" value="Formação Necessária" name="FormNecessaria">
-            <input type="text" value="Área de atuação" name="AreaAtuacao">
-            <input type="button" value="Criar Vaga" name="BtnCriarVaga">
-            
-            
-            foto empresa
-            <input type="button" value="Editar Perfil" name="EdtPerfil">
-            <input type="button" value="Sair" name="Sair">
+            <h4>
+                Nome da Empresa:
+                <input type="text" name="NomeEmpresa">
+                Nome Fantasia:
+                <input type="text" name="NomeFantasia">
+                CNPJ:
+                <input type="text" name="CNPJ">
+                Email:
+                <input type="text" name="Email">
+                Senha:
+                <input type="text" name="Senha">
+                País:
+                <input type="text" name="Pais">
+                UF:
+                <input type="text" name="UF">
+                Cidade:
+                <input type="text" name="Cidade">
+                Rua:
+                <input type="text" name="Rua">
+                CEP:
+                <input type="text" name="CEP">
+                Area de atuação:
+                <input type="text" name="AreaAtuacao">
+                <input type="button" value="Insira uma imagem" name="ADCImagem">
+                Descrição:
+                <input type="button" value="Concluir Cadastro:" name="ConcluirCadastro">
             </h4>
         </div>
     </body>

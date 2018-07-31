@@ -42,6 +42,11 @@
         Experiência na Área:
         <input type="text" name="ExpArea"/>
         </h6>
+        
+        <br>
+        foto pessoa
+        <br>
+        <input type="button" value="Selecionar nova foto" name="EdtFoto">
         <input type="button" value="Editar" name="Editar">
     </body>
 </html>
