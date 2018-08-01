@@ -5,10 +5,12 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.model.service.CepManagement;
+
 /**
  *
  * @author Gabriel
  */
-public class NewClass {
+public class CepManagementImpl implements CepManagement {
     
 }
