@@ -5,7 +5,7 @@
  */
 package br.cefetmg.implicare.model.domain;
 
-import java.awt.image.BufferedImage;
+import java.sql.Blob;
 
 /**
  *
@@ -15,14 +15,14 @@ public class Usuario {
     private long CPF_CNPJ;
     private String Email;
     private String Senha;
-    private BufferedImage Foto;
+    private Blob Foto;
     private long Cod_CEP;
     private String Endereco;
     private String Desc_Usuario;
     
     public Usuario(){}
     
-    public Usuario(long CPF_CNPJ, String Email, String Senha, BufferedImage Foto, long Cod_Cep, String Endereco, String Desc_Usuario){
+    public Usuario(long CPF_CNPJ, String Email, String Senha, Blob Foto, long Cod_Cep, String Endereco, String Desc_Usuario){
         this.CPF_CNPJ = CPF_CNPJ;
         this.Email = Email;
         this.Senha = Senha;
@@ -56,11 +56,11 @@ public class Usuario {
         return Senha;
     }
     
-    public void setFoto(BufferedImage Foto){
+    public void setFoto(Blob Foto){
         this.Foto = Foto;
     }
     
-    public BufferedImage getFoto(){
+    public Blob getFoto(){
         return Foto;
     }
     
