@@ -24,6 +24,16 @@ public class CandidatoVagaDialogo {
     
     public CandidatoVagaDialogo(){}
 
+    public CandidatoVagaDialogo(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao, Timestamp Dat_Dialogo, String Txt_Dialogo, String Idt_Empresa_Candidato){
+        this.CPF = CPF;
+        this.Cod_Cargo = Cod_Cargo;
+        this.CNPJ = CNPJ;
+        this.Dat_Publicacao = Dat_Publicacao;
+        this.Dat_Dialogo = Dat_Dialogo;
+        this.Txt_Dialogo = Txt_Dialogo;
+        this.Idt_Empresa_Candidato = Idt_Empresa_Candidato;
+    }
+    
     public long getCPF() {
         return CPF;
     }

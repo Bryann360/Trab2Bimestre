@@ -15,6 +15,11 @@ public class Cargo {
     
     public Cargo(){}
 
+    public Cargo(int Cod_Cargo, String Nom_Cargo){
+        this.Cod_Cargo = Cod_Cargo;
+        this.Nom_Cargo = Nom_Cargo;
+    }
+    
     public int getCod_Cargo() {
         return Cod_Cargo;
     }

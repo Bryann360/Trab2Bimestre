@@ -16,6 +16,12 @@ public class Cidade {
     
     public Cidade(){}
 
+    public Cidade(int Cod_Estado, int Cod_Cidade, String Nom_Cidade){
+        this.Cod_Estado = Cod_Estado;
+        this.Cod_Cidade = Cod_Cidade;
+        this.Nom_Cidade = Nom_Cidade;
+    }
+    
     public int getCod_Estado() {
         return Cod_Estado;
     }

@@ -16,6 +16,12 @@ public class Empresa {
     
     public Empresa(){}
 
+    public Empresa(long CNPJ, String Nom_Razao_Social, String Nome_Fantasia){
+        this.CNPJ = CNPJ;
+        this.Nom_Razao_Social = Nom_Razao_Social;
+        this.Nome_Fantasia = Nome_Fantasia;
+    }
+    
     public long getCNPJ() {
         return CNPJ;
     }

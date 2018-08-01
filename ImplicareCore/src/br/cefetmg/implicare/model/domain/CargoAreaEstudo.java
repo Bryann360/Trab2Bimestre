@@ -14,6 +14,11 @@ public class CargoAreaEstudo {
     private int Cod_Cargo;
     
     public CargoAreaEstudo(){}
+    
+    public CargoAreaEstudo(int Cod_Area_Estudo, int Cod_Cargo){
+        this.Cod_Area_Estudo = Cod_Area_Estudo;
+        this.Cod_Cargo = Cod_Cargo;
+    }
 
     public int getCod_Area_Estudo() {
         return Cod_Area_Estudo;

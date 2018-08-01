@@ -14,6 +14,11 @@ public class CargoInteresse {
     private int Cod_Cargo;
     
     public CargoInteresse(){}
+    
+    public CargoInteresse(long CPF, int Cod_Cargo){
+        this.CPF = CPF;
+        this.Cod_Cargo = Cod_Cargo;
+    }
 
     public long getCPF() {
         return CPF;

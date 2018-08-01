@@ -17,6 +17,14 @@ public class Telefone {
     private int Ramal;
     
     public Telefone(){}
+    
+    public Telefone(long CPF_CNPJ, String Num_Telefone, String Tipo_Telefone, int DDD, int Ramal){
+        this.CPF_CNPJ = CPF_CNPJ;
+        this.Num_Telefone = Num_Telefone;
+        this.Tipo_Telefone = Tipo_Telefone;
+        this.DDD = DDD;
+        this.Ramal = Ramal;
+    }
 
     public long getCPF_CNPJ() {
         return CPF_CNPJ;

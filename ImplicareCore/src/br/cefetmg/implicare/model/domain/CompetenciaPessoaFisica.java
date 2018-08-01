@@ -15,7 +15,13 @@ public class CompetenciaPessoaFisica {
     private int Cod_Proficiencia;
     
     public CompetenciaPessoaFisica(){}
-
+    
+    public CompetenciaPessoaFisica(long CPF, int Cod_Competencia, int Cod_Proficiencia){
+        this.CPF = CPF;
+        this.Cod_Competencia = Cod_Competencia;
+        this.Cod_Proficiencia = Cod_Proficiencia;
+    }
+    
     public long getCPF() {
         return CPF;
     }

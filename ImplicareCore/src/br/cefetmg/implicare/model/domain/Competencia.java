@@ -14,6 +14,11 @@ public class Competencia {
     private String Nom_Competencia;
     
     public Competencia(){}
+    
+    public Competencia(int Cod_Competencia,String Nom_Competencia){
+        this.Cod_Competencia = Cod_Competencia;
+        this.Nom_Competencia = Nom_Competencia;
+    }
 
     public int getCod_Competencia() {
         return Cod_Competencia;

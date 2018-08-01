@@ -22,6 +22,16 @@ public class Usuario {
     
     public Usuario(){}
     
+    public Usuario(long CPF_CNPJ, String Email, String Senha, BufferedImage Foto, long Cod_Cep, String Endereco, String Desc_Usuario){
+        this.CPF_CNPJ = CPF_CNPJ;
+        this.Email = Email;
+        this.Senha = Senha;
+        this.Foto = Foto;
+        this.Cod_CEP = Cod_Cep;
+        this.Endereco = Endereco;
+        this.Desc_Usuario = Desc_Usuario;
+    }
+    
     public void setCPF_CNPJ(Long CPF_CNPJ) {
         this.CPF_CNPJ = CPF_CNPJ;
     }

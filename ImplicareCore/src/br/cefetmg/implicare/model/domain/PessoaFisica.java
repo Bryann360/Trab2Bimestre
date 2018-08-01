@@ -18,6 +18,12 @@ public class PessoaFisica {
     
     public PessoaFisica(){}
     
+    public PessoaFisica(long CPF, String Nome, Date Data_Nascimento){
+        this.CPF = CPF;
+        this.Nome = Nome;
+        this.Data_Nascimento = Data_Nascimento;
+    }
+    
     public long getCPF() {
         return CPF;
     }

@@ -14,6 +14,11 @@ public class AreaEstudo {
     private String Nom_Area_Estudo;
     
     public AreaEstudo(){}
+    
+    public AreaEstudo(int Cod_Area_Estudo, String Nom_Area_Estudo){
+        this.Cod_Area_Estudo = Cod_Area_Estudo;
+        this.Nom_Area_Estudo = Nom_Area_Estudo;
+    }
 
     public int getCod_Area_Estudo() {
         return Cod_Area_Estudo;

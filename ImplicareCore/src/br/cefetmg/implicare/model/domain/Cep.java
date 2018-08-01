@@ -16,6 +16,12 @@ public class Cep {
     
     public Cep(){}
 
+    public Cep(long Cod_CEP, int Cod_Cidade, int Cod_Estado){
+        this.Cod_CEP = Cod_CEP;
+        this.Cod_Cidade = Cod_Cidade;
+        this.Cod_Estado = Cod_Estado;
+    }
+    
     public long getCod_CEP() {
         return Cod_CEP;
     }

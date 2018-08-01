@@ -14,6 +14,11 @@ public class Estado {
     private String Nom_Estado;
     
     public Estado(){}
+    
+    public Estado(int Cod_Estado, String Nom_Estado){
+        this.Cod_Estado = Cod_Estado;
+        this.Nom_Estado = Nom_Estado;
+    }
 
     public int getCod_Estado() {
         return Cod_Estado;

@@ -26,6 +26,17 @@ public class ExperienciaProfissional {
 
     public ExperienciaProfissional(){}
     
+    public ExperienciaProfissional(long CPF, String Nom_Empresa, int Cod_Cargo, long Cod_Cep, Date Data_Inicio, Date Data_Termino, String Desc_Experiencia_Profissional, long Cod_Cidade, long Cod_Estado){
+        this.CPF = CPF;
+        this.Nom_Empresa = Nom_Empresa;
+        this.Cod_Cargo= Cod_Cargo;
+        this.Data_Inicio = Data_Inicio;
+        this.Data_Termino = Data_Termino;
+        this.Desc_Experiencia_Profissional = Desc_Experiencia_Profissional;
+        this.Cod_Cidade = Cod_Cidade;
+        this.Cod_Estado = Cod_Estado;
+    }
+    
     public long getCPF() {
         return CPF;
     }

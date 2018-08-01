@@ -22,6 +22,17 @@ public class Vaga {
     private int Status_Vaga;
     
     public Vaga(){}
+    
+    public Vaga(long CNPJ, int Cod_Cargo, Date Dat_Publicacao, int Num_Vagas, int Carga_Horaria, double Remuneracao, String Desc_Vaga, int Status_Vaga){
+        this.CNPJ = CNPJ;
+        this.Cod_Cargo = Cod_Cargo;
+        this.Dat_Publicacao = Dat_Publicacao;
+        this.Num_Vagas = Num_Vagas;
+        this.Carga_Horaria = Carga_Horaria;
+        this.Remuneracao = Remuneracao;
+        this.Desc_Vaga = Desc_Vaga;
+        this.Status_Vaga = Status_Vaga;
+    }
 
     public long getCNPJ() {
         return CNPJ;

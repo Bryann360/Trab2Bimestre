@@ -14,6 +14,11 @@ public class Proficiencia {
     private String Nivel_Proficiencia;
     
     public Proficiencia(){}
+    
+    public Proficiencia(int Cod_Proficiencia, String Nivel_Proficiencia){
+        this.Cod_Proficiencia = Cod_Proficiencia;
+        this.Nivel_Proficiencia = Nivel_Proficiencia;
+    }
 
     public int getCod_Proficiencia() {
         return Cod_Proficiencia;

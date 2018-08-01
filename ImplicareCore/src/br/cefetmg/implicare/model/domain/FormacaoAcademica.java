@@ -23,6 +23,17 @@ public class FormacaoAcademica {
 
     public FormacaoAcademica(){}
     
+    public FormacaoAcademica(long CPF, int Seq_Formacao, String Instituicao_Ensino, int Cod_Area_Estudo, String Atividades_Desenvolvidas, Date Data_Inicio, Date Data_Termino, String Desc_Formacao_Academica){
+        this.CPF = CPF;
+        this.Seq_Formacao = Seq_Formacao;
+        this.Instituicao_Ensino = Instituicao_Ensino;
+        this.Cod_Area_Estudo = Cod_Area_Estudo;
+        this.Atividades_Desenvolvidas = Atividades_Desenvolvidas;
+        this.Data_Inicio = Data_Inicio;
+        this.Data_Termino = Data_Termino;
+        this.Desc_Formacao_Academica = Desc_Formacao_Academica;
+    }
+    
     public long getCPF() {
         return CPF;
     }
