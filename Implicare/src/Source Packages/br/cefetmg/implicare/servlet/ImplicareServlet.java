@@ -6,7 +6,7 @@
 package br.cefetmg.implicare.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,69 +18,78 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ImplicareServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ImplicareServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ImplicareServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //Declarando Variaveis
+        String jsp = "";
+        String acao = request.getParameter("acao");
+        // Encode Dos Caracteres
+        request.setCharacterEncoding("UTF-8");
+
+        //Redirecionando Para Classe de Serviço
+        if (null != acao) {
+            switch (acao) {
+                case "InserirCandidatoVaga":
+                    jsp = InserirCandidatoVaga.execute(request);
+                    break;
+                case "InserirCandidatoVagaDialogo":
+                    jsp = InserirCandidatoVagaDialogo.execute(request);
+                    break;
+                case "InserirCargoInteresse":
+                    jsp = InserirCargoInteresse.execute(request);
+                    break;
+                case "InserirCompetenciaPessoaFisica":
+                    jsp = InserirCompetenciaPessoaFisica.execute(request);
+                    break;
+                case "InserirEmpresa":
+                    jsp = InserirEmpresa.execute(request);
+                    break;
+                case "InserirExperienciaProfissional":
+                    jsp = InserirExperienciaProfissional.execute(request);
+                    break;
+                case "InserirFormacaoAcademica":
+                    jsp = InserirFormacaoAcademica.execute(request);
+                    break;
+                case "InserirPessoaFisica":
+                    jsp = InserirPessoaFisica.execute(request);
+                    break;
+                case "InserirTelefone":
+                    jsp = InserirTelefone.execute(request);
+                    break;
+                case "InserirUsuario":
+                    jsp = InserirUsuario.execute(request);
+                    break;
+                case "InserirVaga":
+                    jsp = InserirVaga.execute(request);
+                    break;
+                case "ListarAreaEstudo":
+                    jsp = ListarAreaEstudo.execute(request);
+                    break;
+                case "ListarCargo":
+                    jsp = ListarCargo.execute(request);
+                    break;
+                case "ListarCidade":
+                    jsp = ListarCidadeServlet.execute(request);
+                    break;
+                case "ListarCompetencia":
+                    jsp = ListarCompetencia.execute(request);
+                    break;
+                case "ListarEstado":
+                    jsp = ListarEstado.execute(request);
+                    break;
+                case "ListarProficiencia":
+                    jsp = ListarProficiencia.execute(request);
+                    break;
+                default:
+                    jsp = "/WEB-Pages/Erro.jsp";
+                    request.setAttribute("Erro", "Erro Geral");
+                    break;
+            }
         }
-    }
+        RequestDispatcher rd = request.getRequestDispatcher(jsp);
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        //Redirecioando Pra Uma Nova Pagina
+        rd.forward(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
