@@ -29,6 +29,29 @@ public class ImplicareServlet extends HttpServlet {
         //Redirecionando Para Classe de Serviço
         if (null != acao) {
             switch (acao) {
+                case "AlterarCandidatoVaga":
+                    jsp = AlterarCandidatoVaga.execute(request);
+                    break;
+                case "AlterarEmpresa":
+                    jsp = AlterarEmpresa.execute(request);
+                    break;
+                case "AlterarExperienciaProfissional":
+                    jsp = AlterarExperienciaProfissional.execute(request);
+                    break;
+                case "AlterarFormacaoAcademica":
+                    jsp = AlerarFormacaoAcademica.execute(request);
+                    break;
+                case "AlterarPessoaFisica":
+                    jsp = AlterarPessoaFisica.execute(request);
+                    break;
+                case "AlterarTelefone":
+                    jsp = AlterarTelefone.execute(request);
+                    break;
+                case "AlterarUsuario":
+                    jsp = AlterarUsario.execute(request);
+                    break;
+                case "AlterarVaga":
+                    jsp = AlterarVaga.execute(request);
                 case "InserirCandidatoVaga":
                     jsp = InserirCandidatoVaga.execute(request);
                     break;
