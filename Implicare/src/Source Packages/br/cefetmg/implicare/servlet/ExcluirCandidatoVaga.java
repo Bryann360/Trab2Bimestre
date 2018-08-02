@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Gabriel
  */
-class AlerarFormacaoAcademica {
+class ExcluirCandidatoVaga {
 
     static String execute(HttpServletRequest request) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

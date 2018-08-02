@@ -39,7 +39,7 @@ public class ImplicareServlet extends HttpServlet {
                     jsp = AlterarExperienciaProfissional.execute(request);
                     break;
                 case "AlterarFormacaoAcademica":
-                    jsp = AlerarFormacaoAcademica.execute(request);
+                    jsp = AlterarFormacaoAcademica.execute(request);
                     break;
                 case "AlterarPessoaFisica":
                     jsp = AlterarPessoaFisica.execute(request);
@@ -52,6 +52,28 @@ public class ImplicareServlet extends HttpServlet {
                     break;
                 case "AlterarVaga":
                     jsp = AlterarVaga.execute(request);
+                    break;
+                case "ExcluirCandidatoVaga":
+                    jsp = ExcluirCandidatoVaga.execute(request);
+                    break;
+                case "ExcluirCargoInteresse":
+                    jsp = ExcluirCargoInteresse.execute(request);
+                    break;
+                case "ExcluirCompetenciaPessoaFisica":
+                    jsp = ExcluirPessoaFisica.execute(request);
+                    break;
+                case "ExcluirExperienciaProfissional":
+                    jsp = ExcluirExperienciaProfissional.execute(request);
+                    break;
+                case "ExcluirFormacaoAcademica":
+                    jsp = ExcluirFormacaoAcademica.execute(request);
+                    break;
+                case "ExcluirTelefone":
+                    jsp = ExcluirTelefone.execute(request);
+                    break;
+                case "ExcluirVaga":
+                    jsp = ExcluirVaga.execute(request);
+                    break;
                 case "InserirCandidatoVaga":
                     jsp = InserirCandidatoVaga.execute(request);
                     break;
