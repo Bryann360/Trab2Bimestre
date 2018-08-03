@@ -117,6 +117,47 @@ public class VagaDaoImpl implements VagaDao{
     }
     
     @Override
+    public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException {
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM Vaga WHERE CNPJ = ? ORDER BY Cod_Cargo, Dat_Publicacao";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, CNPJ);
+            ResultSet rs = ps.executeQuery();
+
+            List<Vaga> Vaga = new ArrayList<>();
+            
+            if (rs.next()) {
+                do {
+                    Vaga Vag = new Vaga();
+                    
+                    Vag.setCNPJ(rs.getLong("CNPJ"));
+                    Vag.setCod_Cargo(rs.getInt("Cod_Cargo"));
+                    Vag.setDat_Publicacao(rs.getDate("Dat_Publicacao"));
+                    Vag.setNum_Vagas(rs.getInt("Num_Vagas"));
+                    Vag.setCarga_Horaria(rs.getInt("Caraga_Horaria"));
+                    Vag.setRemuneracao(rs.getDouble("Remuneracao"));
+                    Vag.setDesc_Vaga(rs.getString("Desc_Vaga"));
+                    Vag.setStatus_Vaga(rs.getInt("Status_Vaga"));
+                    
+                    Vaga.add(Vag);
+                } while (rs.next());
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Vaga;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+    
+    @Override
     public List<Vaga> getVagaCod_Cargo(int Cod_Cargo) throws PersistenceException{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -194,4 +235,5 @@ public class VagaDaoImpl implements VagaDao{
             return null;
         }
     }
+
 }

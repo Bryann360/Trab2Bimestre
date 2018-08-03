@@ -24,7 +24,7 @@ public class CandidatoVagaDaoImpl implements CandidatoVagaDao {
 
     @Override
     public void insert(CandidatoVaga CandidatoVaga) throws PersistenceException {
-         try {
+        try {
             Long Seq_CandidatoVaga;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -117,6 +117,42 @@ public class CandidatoVagaDaoImpl implements CandidatoVagaDao {
             System.out.println(ex.toString());
         }
         return ListCand;
+    }
+
+    @Override
+    public CandidatoVaga getCandidatoVagaCod(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao) throws PersistenceException {
+        try {
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM CandidatoVaga WHERE CPF = ?, Cod_Cargo = ?, CNPJ = ?, Dat_Publicacao = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, CPF);
+            ps.setInt(2, Cod_Cargo);
+            ps.setLong(3, CNPJ);
+            ps.setDate(4, Dat_Publicacao);
+            ResultSet rs = ps.executeQuery();
+
+            CandidatoVaga Cand = new CandidatoVaga();
+            
+            if (rs.next()) {
+                Cand.setCPF(rs.getLong("CPF"));
+                Cand.setCod_Cargo(rs.getInt("Cod_Cargo"));
+                Cand.setCNPJ(rs.getLong("CNPJ"));
+                Cand.setDat_Publicacao(rs.getDate("Dat_Publicacao"));
+                Cand.setStatus_Candidato(rs.getString("Status_Candidato"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Cand;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
    
 }

@@ -93,8 +93,32 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
     }
 
     @Override
+    public boolean delete(long CPF, int Seq_Formacao, int Cod_Area_Estudo) throws PersistenceException {
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+            
+            String SQL = "DELETE FROM FormacaoAcademica"
+                    + "WHERE CPF = ?, Seq_Formacao = ?, Cod_Area_Estudo = ?";
+            
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            
+            ps.setLong(1, CPF);
+            ps.setInt(2, Seq_Formacao);
+            ps.setInt(3, Cod_Area_Estudo);
+            
+            ps.executeQuery(SQL);
+            ps.close();
+            connection.close();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return false;
+        }
+    }
+    
+    @Override
     public List<FormacaoAcademica> getFormacaoAcademica(long CPF) throws PersistenceException {
-         try {
+        try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM FormacaoAcademica WHERE CPF = ? ORDER BY Seq_Formacao;";
@@ -125,6 +149,45 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
             connection.close();
 
             return FormAcad;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+
+    @Override
+    public FormacaoAcademica getFormacaoAcademicaCod(long CPF, int Seq_Formacao, int Cod_Area_Estudo) throws PersistenceException {
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM FormacaoAcademica WHERE CPF = ?, Seq_Formacao = ?, Cod_Area_Estudo = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            
+            ps.setLong(1, CPF);
+            ps.setInt(2, Seq_Formacao);
+            ps.setInt(3, Cod_Area_Estudo);
+            
+            ResultSet rs = ps.executeQuery();
+
+           FormacaoAcademica Acad = new FormacaoAcademica();
+            
+            if (rs.next()) {
+                Acad.setCPF(rs.getLong("CPF"));
+                Acad.setSeq_Formacao(rs.getInt("Seq_Formacao"));
+                Acad.setInstituicao_Ensino(rs.getString("Instituicao_Ensino"));
+                Acad.setCod_Area_Estudo(rs.getInt("Cod_Area_Estudo"));
+                Acad.setAtividades_Desenvolvidas(rs.getString("Atividades_Desenvolvidas"));
+                Acad.setData_Inicio(rs.getDate("Data_Inicio"));
+                Acad.setData_Termino(rs.getDate("Data_Termino"));
+                Acad.setDesc_Formacao_Academica(rs.getString("Desc_Formacao_Academica"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Acad;
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.toString());
             return null;

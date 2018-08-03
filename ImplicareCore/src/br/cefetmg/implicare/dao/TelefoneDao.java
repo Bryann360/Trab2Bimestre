@@ -17,5 +17,6 @@ public interface TelefoneDao {
     public void insert(Telefone Telefone) throws PersistenceException;
     public boolean update(long CPF_CNPJ, String Num_Telefone, Telefone Telefone) throws PersistenceException;
     public boolean delete(long CPF_CNPJ, String Num_Telefone) throws PersistenceException;
-    public List<Telefone> getTelefone(long CPF_CNPJ) throws PersistenceException;
+    public List<Telefone> getTelefones(long CPF_CNPJ) throws PersistenceException;
+    public Telefone getTelefoneCod(long CPF_CNPJ, String Num_Telefone) throws PersistenceException;
 }

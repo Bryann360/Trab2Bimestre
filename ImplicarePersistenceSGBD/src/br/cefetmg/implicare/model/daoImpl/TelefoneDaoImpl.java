@@ -106,7 +106,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
     }
     
     @Override
-    public List<Telefone> getTelefone(long CPF_CNPJ) throws PersistenceException{
+    public List<Telefone> getTelefones(long CPF_CNPJ) throws PersistenceException{
         List<Telefone> ListTel;
         ListTel = null;
         Telefone Tel = new Telefone();
@@ -138,6 +138,41 @@ public class TelefoneDaoImpl implements TelefoneDao{
             System.out.println(ex.toString());
         }
         return ListTel;
+    }
+
+    @Override
+    public Telefone getTelefoneCod(long CPF_CNPJ, String Num_Telefone) throws PersistenceException {
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM Telefone WHERE CPF_CNPJ = ?, Num_Telefone = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            
+            ps.setLong(1, CPF_CNPJ);
+            ps.setString(2, Num_Telefone);
+            
+            ResultSet rs = ps.executeQuery();
+
+            Telefone Tel = new Telefone();
+            
+            if (rs.next()) {
+                Tel.setCPF_CNPJ(rs.getLong("CPF_CNPJ"));
+                Tel.setNum_Telefone(rs.getString("Num-Telefone"));
+                Tel.setTipo_Telefone(rs.getString("Tipo_Telfone"));
+                Tel.setDDD(rs.getInt("DDD"));
+                Tel.setRamal(rs.getInt("Ramal"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Tel;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
     
 }

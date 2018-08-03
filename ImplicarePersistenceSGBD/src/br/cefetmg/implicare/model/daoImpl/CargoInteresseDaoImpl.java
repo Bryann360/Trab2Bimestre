@@ -77,11 +77,11 @@ public class CargoInteresseDaoImpl implements CargoInteresseDao {
     }
 
     @Override
-    public List<CargoInteresse> getCargoInteresse(long CPF) throws PersistenceException {
+    public List<CargoInteresse> getCargosInteresse(long CPF) throws PersistenceException {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM CargoInteresse ORDER BY Cod_Cargo WHERE CPF = ?;";
+            String sql = "SELECT * FROM CargoInteresse WHERE CPF = ? ORDER BY Cod_Cargo";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setLong(1, CPF);
@@ -103,6 +103,37 @@ public class CargoInteresseDaoImpl implements CargoInteresseDao {
             connection.close();
 
             return CargoInt;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+
+    @Override
+    public CargoInteresse getCargoInteresseCod(long CPF, int Cod_Cargo) throws PersistenceException {
+        try {
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM CargoInteresse WHERE CPF = ?, Cod_Cargo = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, CPF);
+            ps.setInt(2, Cod_Cargo);
+            ResultSet rs = ps.executeQuery();
+
+            CargoInteresse CarInteresse = new CargoInteresse();
+            
+            if (rs.next()) {
+                CarInteresse.setCPF(rs.getLong("CPF"));
+                CarInteresse.setCod_Cargo(rs.getInt("Cod_Cargo"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return CarInteresse;
+            
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.toString());
             return null;
