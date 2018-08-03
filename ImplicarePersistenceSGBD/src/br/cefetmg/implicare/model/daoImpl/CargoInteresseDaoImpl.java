@@ -26,9 +26,6 @@ public class CargoInteresseDaoImpl implements CargoInteresseDao {
     @Override
     public void insert(CargoInteresse CargoInteresse) throws PersistenceException {
         try {
-            if (CargoInteresse == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_CargoInteresse;
                     
            Connection connection = JDBCConnectionManager.getInstance().getConnection();

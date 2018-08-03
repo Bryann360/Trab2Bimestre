@@ -56,7 +56,32 @@ public class ProficienciaDaoImpl implements ProficienciaDao {
 
     @Override
     public Proficiencia getProficienciaCod(int Cod_Proficiencia) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+           Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM Proficiencia WHERE Cod_Proficiencia = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, Cod_Proficiencia);
+            ResultSet rs = ps.executeQuery();
+
+            Proficiencia Prof = new Proficiencia();
+            
+            if (rs.next()) {
+                Prof.setCod_Proficiencia(rs.getInt("Cod_Proficiencia"));
+                Prof.setNivel_Proficiencia(rs.getString("Nivel_Proficiencia"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Prof;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
     
 }

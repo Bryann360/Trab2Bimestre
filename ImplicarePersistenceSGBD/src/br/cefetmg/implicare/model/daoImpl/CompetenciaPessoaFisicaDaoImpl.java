@@ -25,9 +25,6 @@ public class CompetenciaPessoaFisicaDaoImpl implements CompetenciaPessoaFisicaDa
     @Override
     public void insert(CompetenciaPessoaFisica CompetenciaPessoaFisica) throws PersistenceException {
         try {
-            if (CompetenciaPessoaFisica == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_CompetenciaPessoaFisica;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();

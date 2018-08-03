@@ -25,9 +25,6 @@ public class CandidatoVagaDaoImpl implements CandidatoVagaDao {
     @Override
     public void insert(CandidatoVaga CandidatoVaga) throws PersistenceException {
          try {
-            if (CandidatoVaga == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_CandidatoVaga;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();

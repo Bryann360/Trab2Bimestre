@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface FormacaoAcademicaDao {
     public void insert(FormacaoAcademica FormacaoAcademica) throws PersistenceException;
-    public boolean update(long CPF, int Seq_Formacao,FormacaoAcademica FormacaoAcademica) throws PersistenceException;
+    public boolean update(long CPF, int Seq_Formacao, int Cod_Area_Estudo, FormacaoAcademica FormacaoAcademica) throws PersistenceException;
     public List<FormacaoAcademica> getFormacaoAcademica(long CPF) throws PersistenceException;
 }

@@ -23,9 +23,6 @@ public class EmpresaDaoImpl implements EmpresaDao {
     @Override
     public void insert(Empresa Empresa) throws PersistenceException {
        try {
-            if (Empresa == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_Empresa;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -82,7 +79,7 @@ public class EmpresaDaoImpl implements EmpresaDao {
     @Override
     public Empresa getEmpresaCod(Long CNPJ) throws PersistenceException {
         try {
-           Connection connection = JDBCConnectionManager.getInstance().getConnection();
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM Empresa WHERE CNPJ = ?";
 

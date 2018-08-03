@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface CidadeDao {
     public List<Cidade> getCidades(int Cod_Estado) throws PersistenceException;
-    public Cidade getCidadeCod(int Cod_Estado, int Cod_Cidade) throws PersistenceException;
+    public Cidade getCidadeCod(int Cod_Cidade) throws PersistenceException;
 }

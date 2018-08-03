@@ -23,9 +23,6 @@ public class UsuarioDaoImpl implements UsuarioDao{
     @Override
     public void insert(Usuario Usuario) throws PersistenceException {
         try {
-            if (Usuario == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_Usuario;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -39,7 +36,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
             ps.setLong(1, Usuario.getCPF_CNPJ());
             ps.setString(2, Usuario.getEmail());
             ps.setString(3, Usuario.getSenha());
-            ps.setBlob(4, Usuario.getFoto());
+            ps.setString(4, Usuario.getFoto());
             ps.setLong(5, Usuario.getCod_CEP());
             ps.setString(6, Usuario.getEndereco());
             ps.setString(7, Usuario.getDesc_Usuario());
@@ -73,7 +70,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
        
             ps.setString(1, Usuario.getEmail());
             ps.setString(2, Usuario.getSenha());
-            ps.setBlob(2, Usuario.getFoto());
+            ps.setString(2, Usuario.getFoto());
             ps.setLong(4, Usuario.getCod_CEP());
             ps.setString(5, Usuario.getEndereco());
             ps.setString(6, Usuario.getDesc_Usuario());
@@ -92,7 +89,36 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
     @Override
     public Usuario getUsuarioCod(Long CPF_CNPJ) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM Usuario WHERE CPF_CNPJ = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, CPF_CNPJ);
+            ResultSet rs = ps.executeQuery();
+
+            Usuario User = new Usuario();
+            
+            if (rs.next()) {
+                User.setCPF_CNPJ(rs.getLong("CPF_CNPJ"));
+                User.setEmail(rs.getString("Email"));
+                User.setSenha(rs.getString("Senha"));
+                User.setFoto(rs.getString("Foto"));
+                User.setEndereco(rs.getString("Endereco"));
+                User.setDesc_Usuario(rs.getString("Desc_Usuario"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return User;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
     
 }

@@ -23,9 +23,6 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
     @Override
     public void insert(PessoaFisica PessoaFisica) throws PersistenceException {
         try {
-            if (PessoaFisica == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_PessoaFisica;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -80,7 +77,33 @@ public class PessoaFisicaDaoImpl implements PessoaFisicaDao {
 
     @Override
     public PessoaFisica getPessoaFisicaCod(Long CPF) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM PessoaFisica WHERE CPF = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, CPF);
+            ResultSet rs = ps.executeQuery();
+
+            PessoaFisica Pessoa = new PessoaFisica();
+            
+            if (rs.next()) {
+                Pessoa.setCPF(rs.getLong("CPF"));
+                Pessoa.setNome(rs.getString("Nome"));
+                Pessoa.setData_Nascimento(rs.getDate("Data_Nascimento"));
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+
+            return Pessoa;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
     }
     
 }

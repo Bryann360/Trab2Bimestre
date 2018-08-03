@@ -57,7 +57,7 @@ public class CidadeDaoImpl implements CidadeDao {
     }
 
     @Override
-    public Cidade getCidadeCod(int Cod_Estado, int Cod_Cidade) throws PersistenceException {
+    public Cidade getCidadeCod(int Cod_Cidade) throws PersistenceException {
         try {
            Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -65,8 +65,7 @@ public class CidadeDaoImpl implements CidadeDao {
 
             PreparedStatement ps = connection.prepareStatement(sql);
             
-            ps.setLong(1, Cod_Estado);
-            ps.setInt(2, Cod_Cidade);
+            ps.setInt(1, Cod_Cidade);
             
             ResultSet rs = ps.executeQuery();
 

@@ -25,9 +25,6 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
     @Override
     public void insert(FormacaoAcademica FormacaoAcademica) throws PersistenceException {
         try {
-            if (FormacaoAcademica == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_FormacaoAcademica;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -63,14 +60,14 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
     }
 
     @Override
-    public boolean update(long CPF, int Seq_Formacao, FormacaoAcademica FormacaoAcademica) throws PersistenceException {
+    public boolean update(long CPF, int Seq_Formacao, int Cod_Area_Estudo, FormacaoAcademica FormacaoAcademica) throws PersistenceException {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
             
             String SQL = "UPDATE FormacaoAcademica SET Seq_Formacao = ?, Instituicao_Ensino = ?, "
                     + "Cod_Area_Estudo = ? , Atividades_Desenvolvidas = ?, Data_Inicio = ?, "
                     + "Data_Termino = ?, Desc_Formacao_Academica = ?"
-                    + "WHERE CPF = ?, Seq_Formacao = ?";
+                    + "WHERE CPF = ?, Seq_Formacao = ?, Cod_Area_Estudo = ?";
             
             PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -83,6 +80,7 @@ public class FormacaoAcademicaDaoImpl implements FormacaoAcademicaDao {
             ps.setString(7, FormacaoAcademica.getDesc_Formacao_Academica());
             ps.setLong(8, CPF);
             ps.setInt(9, Seq_Formacao);
+            ps.setInt(10, Cod_Area_Estudo);
             
             ps.executeQuery(SQL);
             ps.close();

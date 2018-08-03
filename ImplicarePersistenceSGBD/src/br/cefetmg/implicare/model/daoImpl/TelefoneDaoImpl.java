@@ -24,9 +24,6 @@ public class TelefoneDaoImpl implements TelefoneDao{
     @Override
     public void insert(Telefone Telefone) throws PersistenceException{
         try {
-            if (Telefone == null) {
-                throw new PersistenceException("Entidade não pode ser nula.");
-            }
             Long Seq_Telefone;
                     
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -77,6 +74,7 @@ public class TelefoneDaoImpl implements TelefoneDao{
             ps.executeQuery(SQL);
             ps.close();
             connection.close();
+            
             return true;
         } catch (Exception ex) {
             System.out.println(ex.toString());
