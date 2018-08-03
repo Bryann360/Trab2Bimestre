@@ -5,6 +5,11 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.CandidatoVagaDialogo;
+import br.cefetmg.implicare.model.serviceImpl.CandidatoVagaDialogoManagementImpl;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +19,45 @@ import javax.servlet.http.HttpServletRequest;
 class InserirCandidatoVagaDialogo {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try {
+            
+            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
+            Long CNPJ = Long.parseLong(request.getParameter("CNPJ"));
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date Dat_Publicacao = (Date) format.parse(request.getParameter("Dat_Publicacao"));
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Timestamp Dat_Dialogo = (Timestamp) formato.parse(request.getParameter("Dat_Dialogo"));
+            String Txt_Dialogo = request.getParameter("Txt_Dialogo");
+            String Idt_Empresa_Candidato = request.getParameter("Idt_Empresa_Candidato");
+            
+            CandidatoVagaDialogoManagementImpl CandidatoDialogoImpl = new CandidatoVagaDialogoManagementImpl();            
+            CandidatoVagaDialogo CandVagaDialogo = new CandidatoVagaDialogo();
+            
+            CandVagaDialogo.setCPF(CPF);
+            CandVagaDialogo.setCod_Cargo(Cod_Cargo);
+            CandVagaDialogo.setCNPJ(CNPJ);
+            CandVagaDialogo.setDat_Publicacao(Dat_Publicacao);
+            CandVagaDialogo.setDat_Dialogo(Dat_Dialogo);
+            CandVagaDialogo.setTxt_Dialogo(Txt_Dialogo);
+            CandVagaDialogo.setIdt_Empresa_Candidato(Idt_Empresa_Candidato);
+            
+            CandidatoDialogoImpl.insert(CandVagaDialogo);
+
+            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+                String Erro = "Erro ao inserir Candidato Vaga Dialogo";
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro", Erro);
+            } else {
+                jsp="";
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        
+        return jsp;
     }
     
 }

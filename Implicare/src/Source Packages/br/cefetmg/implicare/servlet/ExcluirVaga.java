@@ -23,9 +23,9 @@ class ExcluirVaga {
             Long CNPJ = Long.parseLong(request.getParameter("CNPJ"));
             int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            Date data = (Date) formato.parse("Data_Publicacao");
+            Date Dat_Publicacao = (Date) formato.parse(request.getParameter("Dat_Publicacao"));
             VagaManagementImpl VagaImpl = new VagaManagementImpl();        
-            boolean Vaga = VagaImpl.delete(CNPJ, Cod_Cargo, data);
+            boolean Vaga = VagaImpl.delete(CNPJ, Cod_Cargo, Dat_Publicacao);
 
             if (Vaga =! false) {
                 jsp="";

@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.CompetenciaPessoaFisica;
+import br.cefetmg.implicare.model.serviceImpl.CompetenciaPessoaFisicaManagementImpl;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +16,35 @@ import javax.servlet.http.HttpServletRequest;
 class InserirCompetenciaPessoaFisica {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try {
+            
+            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            int Cod_Competencia = Integer.parseInt(request.getParameter("Cod_Competencia"));
+            int Cod_Proficiencia = Integer.parseInt(request.getParameter("Cod_Proficiencia"));
+            
+            CompetenciaPessoaFisicaManagementImpl CompetenciaPessoaImpl = new CompetenciaPessoaFisicaManagementImpl();            
+            CompetenciaPessoaFisica Comp = new CompetenciaPessoaFisica();
+            
+            Comp.setCPF(CPF);
+            Comp.setCod_Competencia(Cod_Competencia);
+            Comp.setCod_Proficiencia(Cod_Proficiencia);
+            
+            CompetenciaPessoaImpl.insert(Comp);
+
+            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+                String Erro = "Erro ao inserir Cargo Interesse";
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro", Erro);
+            } else {
+                jsp="";
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        
+        return jsp;
     }
     
 }

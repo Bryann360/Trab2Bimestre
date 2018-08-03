@@ -5,6 +5,10 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.CandidatoVaga;
+import br.cefetmg.implicare.model.serviceImpl.CandidatoVagaManagementImpl;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +18,40 @@ import javax.servlet.http.HttpServletRequest;
 class InserirCandidatoVaga {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try {
+            
+            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
+            Long CNPJ = Long.parseLong(request.getParameter("CNPJ"));
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date Dat_Publicacao = (Date) formato.parse(request.getParameter("Dat_Publicacao"));
+            String Status_Candidato = request.getParameter("Status_Candidato");
+            
+            CandidatoVagaManagementImpl CandidatoImpl = new CandidatoVagaManagementImpl();            
+            CandidatoVaga CandVaga = new CandidatoVaga();
+            
+            CandVaga.setCPF(CPF);
+            CandVaga.setCod_Cargo(Cod_Cargo);
+            CandVaga.setCNPJ(CNPJ);
+            CandVaga.setDat_Publicacao(Dat_Publicacao);
+            CandVaga.setStatus_Candidato(Status_Candidato);
+
+            CandidatoImpl.insert(CandVaga);
+
+            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+                String Erro = "Erro ao inserir Candidato Vaga";
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro", Erro);
+            } else {
+                jsp="";
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        
+        return jsp;
     }
     
 }
