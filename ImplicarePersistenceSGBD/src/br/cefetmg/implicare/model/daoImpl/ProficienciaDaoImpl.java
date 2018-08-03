@@ -55,7 +55,7 @@ public class ProficienciaDaoImpl implements ProficienciaDao {
     }
 
     @Override
-    public Proficiencia getLojaByCod(int Cod_Proficiencia) throws PersistenceException {
+    public Proficiencia getProficienciaCod(int Cod_Proficiencia) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

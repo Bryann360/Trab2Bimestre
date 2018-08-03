@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.EstadoDao;
+import br.cefetmg.implicare.model.daoImpl.EstadoDaoImpl;
 import br.cefetmg.implicare.model.domain.Estado;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.implicare.model.service.EstadoManagement;
@@ -15,15 +17,22 @@ import java.util.List;
  * @author Gabriel
  */
 public class EstadoManagementImpl implements EstadoManagement {
-
+    private final EstadoDao EstadoDao;
+    
+    public EstadoManagementImpl(){
+        EstadoDao = new EstadoDaoImpl();
+    }
+    
     @Override
     public List<Estado> listAll() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Estado> result = EstadoDao.listAll();
+        return result;
     }
 
     @Override
     public Estado getEstadoCod(int Cod_Estado) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Estado result = EstadoDao.getEstadoCod(Cod_Estado);
+        return result;
     }
     
 }

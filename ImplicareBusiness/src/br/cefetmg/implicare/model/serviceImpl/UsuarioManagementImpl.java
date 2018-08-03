@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.UsuarioDao;
+import br.cefetmg.implicare.model.daoImpl.UsuarioDaoImpl;
 import br.cefetmg.implicare.model.domain.Usuario;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -15,7 +17,12 @@ import br.cefetmg.implicare.model.service.UsuarioManagement;
  * @author Gabriel
  */
 public class UsuarioManagementImpl implements UsuarioManagement {
-
+    private final UsuarioDao UsuarioDao;
+    
+    public UsuarioManagementImpl(){
+        UsuarioDao = new UsuarioDaoImpl();
+    }
+    
     @Override
     public void insert(Usuario Usuario) throws BusinessException, PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -28,7 +35,8 @@ public class UsuarioManagementImpl implements UsuarioManagement {
 
     @Override
     public Usuario getUsuarioCod(Long CPF_CNPJ) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Usuario result = UsuarioDao.getUsuarioCod(CPF_CNPJ);
+        return result;
     }
     
 }

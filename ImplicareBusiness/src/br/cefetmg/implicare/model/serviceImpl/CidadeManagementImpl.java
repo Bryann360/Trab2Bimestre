@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.CidadeDao;
+import br.cefetmg.implicare.model.daoImpl.CidadeDaoImpl;
 import br.cefetmg.implicare.model.domain.Cidade;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.implicare.model.service.CidadeManagement;
@@ -15,15 +17,22 @@ import java.util.List;
  * @author Gabriel
  */
 public class CidadeManagementImpl implements CidadeManagement {
-
+    private final CidadeDao CidadeDao;
+    
+    public CidadeManagementImpl(){
+        CidadeDao = new CidadeDaoImpl();
+    }
+    
     @Override
     public List<Cidade> getCidades(int Cod_Estado) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Cidade> result = CidadeDao.getCidades(Cod_Estado);
+        return result;
     }
 
     @Override
     public Cidade getCidadeCod(int Cod_Estado, int Cod_Cidade) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cidade result = CidadeDao.getCidadeCod(Cod_Estado, Cod_Cidade);
+        return result;
     }
     
 }

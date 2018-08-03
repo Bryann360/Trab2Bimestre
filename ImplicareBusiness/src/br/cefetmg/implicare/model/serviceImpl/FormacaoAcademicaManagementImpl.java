@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.FormacaoAcademicaDao;
+import br.cefetmg.implicare.model.daoImpl.FormacaoAcademicaDaoImpl;
 import br.cefetmg.implicare.model.domain.FormacaoAcademica;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -16,7 +18,12 @@ import java.util.List;
  * @author Gabriel
  */
 public class FormacaoAcademicaManagementImpl implements FormacaoAcademicaManagement {
-
+    private final FormacaoAcademicaDao FormacaoAcademicaDao;
+    
+    public FormacaoAcademicaManagementImpl(){
+        FormacaoAcademicaDao = new FormacaoAcademicaDaoImpl();
+    }
+    
     @Override
     public void insert(FormacaoAcademica FormacaoAcademica) throws BusinessException, PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -29,7 +36,8 @@ public class FormacaoAcademicaManagementImpl implements FormacaoAcademicaManagem
 
     @Override
     public List<FormacaoAcademica> getFormacaoAcademica(long CPF) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<FormacaoAcademica> result = FormacaoAcademicaDao.getFormacaoAcademica(CPF);
+        return result;
     }
     
 }

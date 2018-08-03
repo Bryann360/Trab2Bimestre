@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.CompetenciaDao;
+import br.cefetmg.implicare.model.daoImpl.CompetenciaDaoImpl;
 import br.cefetmg.implicare.model.domain.Competencia;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.implicare.model.service.CompetenciaManagement;
@@ -15,15 +17,22 @@ import java.util.List;
  * @author Gabriel
  */
 public class CompetenciaManagementImpl implements CompetenciaManagement {
-
+    private final CompetenciaDao CompetenciaDao;
+    
+    public CompetenciaManagementImpl(){
+        CompetenciaDao = new CompetenciaDaoImpl();
+    }
+    
     @Override
     public List<Competencia> listAll() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Competencia> result = CompetenciaDao.listAll();
+        return result;
     }
 
     @Override
     public Competencia getCompetenciaCod(int Cod_Competencia) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Competencia result = CompetenciaDao.getCompetenciaCod(Cod_Competencia);
+        return result;
     }
     
 }

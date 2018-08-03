@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.CargoInteresseDao;
+import br.cefetmg.implicare.model.daoImpl.CargoInteresseDaoImpl;
 import br.cefetmg.implicare.model.domain.CargoInteresse;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -16,7 +18,12 @@ import java.util.List;
  * @author Gabriel
  */
 public class CargoInteresseManagementImpl implements CargoInteresseManagement {
-
+    private final CargoInteresseDao CargoInteresseDao;
+    
+    public CargoInteresseManagementImpl(){
+        CargoInteresseDao = new CargoInteresseDaoImpl();
+    }
+    
     @Override
     public void insert(CargoInteresse CargoInteresse) throws BusinessException, PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -29,7 +36,8 @@ public class CargoInteresseManagementImpl implements CargoInteresseManagement {
 
     @Override
     public List<CargoInteresse> getCargoInteresse(long CPF) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<CargoInteresse> result = CargoInteresseDao.getCargoInteresse(CPF);
+        return result; 
     }
     
 }

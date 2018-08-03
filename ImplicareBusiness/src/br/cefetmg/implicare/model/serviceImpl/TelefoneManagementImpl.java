@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.TelefoneDao;
+import br.cefetmg.implicare.model.daoImpl.TelefoneDaoImpl;
 import br.cefetmg.implicare.model.domain.Telefone;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -16,7 +18,12 @@ import java.util.List;
  * @author Gabriel
  */
 public class TelefoneManagementImpl implements TelefoneManagement {
-
+    private final TelefoneDao TelefoneDao;
+    
+    public TelefoneManagementImpl(){
+        TelefoneDao = new TelefoneDaoImpl();
+    }
+    
     @Override
     public void insert(Telefone Telefone) throws BusinessException, PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -34,7 +41,8 @@ public class TelefoneManagementImpl implements TelefoneManagement {
 
     @Override
     public List<Telefone> getTelefone(long CPF_CNPJ) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Telefone> result = TelefoneDao.getTelefone(CPF_CNPJ);
+        return result;
     }
     
 }

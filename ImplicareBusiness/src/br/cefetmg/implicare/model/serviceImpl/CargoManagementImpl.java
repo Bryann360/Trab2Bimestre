@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.CargoDao;
+import br.cefetmg.implicare.model.daoImpl.CargoDaoImpl;
 import br.cefetmg.implicare.model.domain.Cargo;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.implicare.model.service.CargoManagement;
@@ -15,15 +17,22 @@ import java.util.List;
  * @author Gabriel
  */
 public class CargoManagementImpl implements CargoManagement {
-
+    private final CargoDao CargoDao;
+    
+    public CargoManagementImpl(){
+        CargoDao = new CargoDaoImpl();
+    }
+    
     @Override
     public List<Cargo> listAll() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Cargo> result = CargoDao.listAll();
+        return result;
     }
 
     @Override
     public Cargo getCargoCod(int Cod_Cargo) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cargo result = CargoDao.getCargoCod(Cod_Cargo);
+        return result;
     }
     
 }
