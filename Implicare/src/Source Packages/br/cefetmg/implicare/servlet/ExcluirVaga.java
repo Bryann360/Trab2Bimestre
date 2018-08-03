@@ -5,6 +5,9 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.serviceImpl.VagaManagementImpl;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +17,29 @@ import javax.servlet.http.HttpServletRequest;
 class ExcluirVaga {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try{
+
+            Long CNPJ = Long.parseLong(request.getParameter("CNPJ"));
+            int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = (Date) formato.parse("Data_Publicacao");
+            VagaManagementImpl VagaImpl = new VagaManagementImpl();        
+            boolean Vaga = VagaImpl.delete(CNPJ, Cod_Cargo, data);
+
+            if (Vaga =! false) {
+                jsp="";
+            } else {
+                String Erro = "Ocorreu erro ao Excluir Vaga!";
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro", Erro);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        
+        return jsp;
     }
     
 }

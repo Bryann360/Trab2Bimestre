@@ -5,28 +5,28 @@
  */
 package br.cefetmg.implicare.servlet;
 
-import br.cefetmg.implicare.model.serviceImpl.TelefoneManagementImpl;
+import br.cefetmg.implicare.model.serviceImpl.CompetenciaPessoaFisicaManagementImpl;
 import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author Gabriel
  */
-class ExcluirTelefone {
+class ExcluirCompetenciaPessoaFisica {
 
     static String execute(HttpServletRequest request) {
         String jsp="";
         try{
 
             Long CPF = Long.parseLong(request.getParameter("CPF"));
-            String Num_Telefone = request.getParameter("Num_Telefone");
-            TelefoneManagementImpl TelefoneImpl = new TelefoneManagementImpl();        
-            boolean Telefone = TelefoneImpl.delete(CPF, Num_Telefone);
+            int Cod_Competencia = Integer.parseInt(request.getParameter("Cod_Competencia"));
+            CompetenciaPessoaFisicaManagementImpl CompetenciaPessoaImpl = new CompetenciaPessoaFisicaManagementImpl();        
+            boolean Competencia = CompetenciaPessoaImpl.delete(CPF, Cod_Competencia);
 
-            if (Telefone =! false) {
-                jsp="";
+            if (Competencia =! false) {
+                //jsp="";
             } else {
-                String Erro = "Ocorreu erro ao Excluir Telefone!";
+                String Erro = "Ocorreu erro ao Excluir Competencia Pessoa Fisica!";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);
             }

@@ -60,7 +60,7 @@ public class ImplicareServlet extends HttpServlet {
                     jsp = ExcluirCargoInteresse.execute(request);
                     break;
                 case "ExcluirCompetenciaPessoaFisica":
-                    jsp = ExcluirPessoaFisica.execute(request);
+                    jsp = ExcluirCompetenciaPessoaFisica.execute(request);
                     break;
                 case "ExcluirExperienciaProfissional":
                     jsp = ExcluirExperienciaProfissional.execute(request);
