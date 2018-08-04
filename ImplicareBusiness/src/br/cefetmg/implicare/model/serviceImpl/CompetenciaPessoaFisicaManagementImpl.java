@@ -26,7 +26,7 @@ public class CompetenciaPessoaFisicaManagementImpl implements CompetenciaPessoaF
 
     @Override
     public void insert(CompetenciaPessoaFisica CompetenciaPessoaFisica) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CompetenciaPessoaFisicaDao.insert(CompetenciaPessoaFisica);
     }
 
     @Override

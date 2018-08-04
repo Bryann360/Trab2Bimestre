@@ -25,12 +25,13 @@ public class UsuarioManagementImpl implements UsuarioManagement {
     
     @Override
     public void insert(Usuario Usuario) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UsuarioDao.insert(Usuario);
     }
 
     @Override
     public boolean update(Long CPF_CNPJ, Usuario Usuario) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = UsuarioDao.update(CPF_CNPJ, Usuario);
+        return result;
     }
 
     @Override

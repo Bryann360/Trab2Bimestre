@@ -26,12 +26,13 @@ public class ExperienciaProfissionalManagementImpl implements ExperienciaProfiss
     
     @Override
     public void insert(ExperienciaProfissional ExperienciaProfissional) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ExperienciaProfissionalDao.insert(ExperienciaProfissional);
     }
 
     @Override
     public boolean update(Long CPF, int Seq_Experiencia, int Cod_Cargo, ExperienciaProfissional ExperienciaProfssional) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = ExperienciaProfissionalDao.update(CPF, Seq_Experiencia, Cod_Cargo, ExperienciaProfssional);
+        return result;
     }
 
     @Override

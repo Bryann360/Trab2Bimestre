@@ -25,12 +25,13 @@ public class PessoaFisicaManagementImpl implements PessoaFisicaManagement {
     
     @Override
     public void insert(PessoaFisica PessoaFisica) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PessoaFisicaDao.insert(PessoaFisica);
     }
 
     @Override
     public boolean update(Long CPF, PessoaFisica PessoaFisica) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = PessoaFisicaDao.update(CPF, PessoaFisica);
+        return result;
     }
 
     @Override

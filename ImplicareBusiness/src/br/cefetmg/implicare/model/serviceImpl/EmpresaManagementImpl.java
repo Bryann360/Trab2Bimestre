@@ -25,12 +25,13 @@ public class EmpresaManagementImpl implements EmpresaManagement {
     
     @Override
     public void insert(Empresa Empresa) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EmpresaDao.insert(Empresa);
     }
 
     @Override
     public boolean update(Long CNPJ, Empresa Empresa) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = EmpresaDao.update(CNPJ, Empresa);
+        return result;
     }
 
     @Override

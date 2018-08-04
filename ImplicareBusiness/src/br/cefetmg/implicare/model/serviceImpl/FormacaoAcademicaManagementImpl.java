@@ -26,12 +26,13 @@ public class FormacaoAcademicaManagementImpl implements FormacaoAcademicaManagem
 
     @Override
     public void insert(FormacaoAcademica FormacaoAcademica) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FormacaoAcademicaDao.insert(FormacaoAcademica);
     }
 
     @Override
     public boolean update(long CPF, int Seq_Formacao, int Cod_Area_Estudo, FormacaoAcademica FormacaoAcademica) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = FormacaoAcademicaDao.update(CPF, Seq_Formacao, Cod_Area_Estudo, FormacaoAcademica);
+        return result;
     }
 
     @Override

@@ -27,12 +27,13 @@ public class CandidatoVagaManagementImpl implements CandidatoVagaManagement {
     
     @Override
     public void insert(CandidatoVaga CandidatoVaga) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CandidatoVagaDao.insert(CandidatoVaga);
     }
 
     @Override
     public boolean update(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao, CandidatoVaga CandidatoVaga) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = CandidatoVagaDao.update(CPF, Cod_Cargo, CNPJ, Dat_Publicacao, CandidatoVaga);
+        return result;
     }
 
     @Override

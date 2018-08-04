@@ -26,7 +26,7 @@ public class CargoInteresseManagementImpl implements CargoInteresseManagement {
     
     @Override
     public void insert(CargoInteresse CargoInteresse) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CargoInteresseDao.insert(CargoInteresse);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class CandidatoVagaDialogoManagementImpl implements CandidatoVagaDialogoM
     
     @Override
     public void insert(CandidatoVagaDialogo CandidatoVagaDialogo) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CandidatoVagaDialogoDao.insert(CandidatoVagaDialogo);
     }
 
     @Override

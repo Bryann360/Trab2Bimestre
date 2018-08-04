@@ -27,12 +27,13 @@ public class VagaManagementImpl implements VagaManagement {
 
     @Override
     public void insert(Vaga Vaga) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        VagaDao.insert(Vaga);
     }
 
     @Override
     public boolean update(long CNPJ, int Cod_Cargo, Date Dat_Publicacao, Vaga Vaga) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = VagaDao.update(CNPJ, Cod_Cargo, Dat_Publicacao, Vaga);
+        return result;
     }
 
     @Override
