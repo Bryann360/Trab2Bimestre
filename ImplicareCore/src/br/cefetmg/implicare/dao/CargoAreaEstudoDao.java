@@ -18,5 +18,4 @@ public interface CargoAreaEstudoDao {
     public void insert(CargoAreaEstudo CargoAreaEstudo) throws PersistenceException;
     public boolean delete(int Cod_Area_Estudo, int Cod_Cargo) throws PersistenceException;
     public List<CargoAreaEstudo> listAll() throws PersistenceException;
- 
 }

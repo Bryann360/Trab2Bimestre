@@ -15,6 +15,7 @@ import java.sql.Date;
  */
 public class ExperienciaProfissional {
     private long CPF;
+    private int Seq_Experiencia;
     private String Nom_Empresa;
     private int Cod_Cargo;
     private long Cod_CEP;
@@ -26,8 +27,9 @@ public class ExperienciaProfissional {
 
     public ExperienciaProfissional(){}
     
-    public ExperienciaProfissional(long CPF, String Nom_Empresa, int Cod_Cargo, long Cod_Cep, Date Data_Inicio, Date Data_Termino, String Desc_Experiencia_Profissional, long Cod_Cidade, long Cod_Estado){
+    public ExperienciaProfissional(long CPF, int Seq_Experiencia, String Nom_Empresa, int Cod_Cargo, long Cod_Cep, Date Data_Inicio, Date Data_Termino, String Desc_Experiencia_Profissional, long Cod_Cidade, long Cod_Estado){
         this.CPF = CPF;
+        this.Seq_Experiencia=Seq_Experiencia;
         this.Nom_Empresa = Nom_Empresa;
         this.Cod_Cargo= Cod_Cargo;
         this.Data_Inicio = Data_Inicio;
@@ -44,7 +46,15 @@ public class ExperienciaProfissional {
     public void setCPF(long CPF) {
         this.CPF = CPF;
     }
+    
+    public int getSeq_Experiencia() {
+        return Seq_Experiencia;
+    }
 
+    public void setSeq_Experiencia(int Seq_Experiencia) {
+        this.Seq_Experiencia = Seq_Experiencia;
+    }
+    
     public String getNom_Empresa() {
         return Nom_Empresa;
     }

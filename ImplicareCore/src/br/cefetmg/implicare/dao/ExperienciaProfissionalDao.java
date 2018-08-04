@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface ExperienciaProfissionalDao {
     public void insert(ExperienciaProfissional ExperienciaProfissional) throws PersistenceException;
-    public boolean update(Long CPF, int Cod_Cargo, ExperienciaProfissional ExperienciaProfssional) throws PersistenceException;
-    public List<ExperienciaProfissional> listAll() throws PersistenceException;
+    public boolean update(Long CPF, int Seq_Experiencia, int Cod_Cargo, ExperienciaProfissional ExperienciaProfssional) throws PersistenceException;
+    public boolean delete(Long CPF, int Seq_Experiencia, int Cod_Cargo) throws PersistenceException;
+    public List<ExperienciaProfissional> getExperienciasProfissionais(Long CPF) throws PersistenceException;
+    public ExperienciaProfissional getExperienciaProfissionalCod(Long CPF, int Seq_Experiencia, int Cod_Cargo) throws PersistenceException;
 }
