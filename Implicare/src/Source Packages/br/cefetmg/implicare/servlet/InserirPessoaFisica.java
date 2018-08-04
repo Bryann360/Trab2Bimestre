@@ -21,7 +21,7 @@ class InserirPessoaFisica {
         String jsp="";
         try {
             
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF = Long.parseLong(request.getParameter("CPF_CNPJ"));
             String Nome = request.getParameter("Nome");
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date Data_Nascimento = (Date) formato.parse(request.getParameter("Data_Nascimento"));
@@ -35,7 +35,7 @@ class InserirPessoaFisica {
             
             PessoaImpl.insert(Pessoa);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+            if (PessoaImpl.getPessoaFisicaCod(CPF) == null) {
                 String Erro = "Erro ao inserir Pessoa Fisica";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);

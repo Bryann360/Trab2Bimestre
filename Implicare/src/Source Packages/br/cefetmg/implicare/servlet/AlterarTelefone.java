@@ -19,7 +19,7 @@ class AlterarTelefone {
         String jsp = "";
         try {
 
-            Long CPF_CNPJ = Long.parseLong(request.getParameter("CPF_CNPJ"));
+            Long CPF_CNPJ = (Long) request.getSession().getAttribute("CPF_CNPJ");
             String Num_Telefone = request.getParameter("Num_Telefone");
             String Tipo_Telefone = request.getParameter("Tipo_Telefone");
             int DDD = Integer.parseInt(request.getParameter("DDD"));

@@ -21,7 +21,7 @@ class InserirFormacaoAcademica {
         String jsp="";
         try {
             
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
             int Seq_Formacao = Integer.parseInt(request.getParameter("Seq_Formacao"));
             String Instituicao_Ensino = request.getParameter("Instituicao_Ensino");
             int Cod_Area_Estudo = Integer.parseInt(request.getParameter("Cod_Area_Estudo"));
@@ -46,7 +46,7 @@ class InserirFormacaoAcademica {
             
             FormacaoImpl.insert(Formacao);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+            if (FormacaoImpl.getFormacaoAcademicaCod(CPF, Seq_Formacao, Cod_Area_Estudo) == null) {
                 String Erro = "Erro ao inserir Formacao Academica";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);

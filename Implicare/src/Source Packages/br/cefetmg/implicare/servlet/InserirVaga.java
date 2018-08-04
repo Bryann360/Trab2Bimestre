@@ -21,7 +21,7 @@ class InserirVaga {
         String jsp="";
         try {
             
-            Long CNPJ = Long.parseLong(request.getParameter("CNPJ"));
+            Long CNPJ = (Long) request.getSession().getAttribute("CPF_CNPJ");
             int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date Dat_Publicacao = (Date) formato.parse(request.getParameter("Dat_Publicacao"));
@@ -45,7 +45,7 @@ class InserirVaga {
             
             VagaImpl.insert(Vaga);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+            if (VagaImpl.getVagaCod(CNPJ, Cod_Cargo, Dat_Publicacao) == null) {
                 String Erro = "Erro ao inserir Vaga";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);

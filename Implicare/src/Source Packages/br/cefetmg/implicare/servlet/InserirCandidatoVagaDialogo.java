@@ -30,7 +30,7 @@ class InserirCandidatoVagaDialogo {
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Timestamp Dat_Dialogo = (Timestamp) formato.parse(request.getParameter("Dat_Dialogo"));
             String Txt_Dialogo = request.getParameter("Txt_Dialogo");
-            String Idt_Empresa_Candidato = request.getParameter("Idt_Empresa_Candidato");
+            String Idt_Empresa_Candidato = (String) request.getSession().getAttribute("CPF_CNPJ");
             
             CandidatoVagaDialogoManagementImpl CandidatoDialogoImpl = new CandidatoVagaDialogoManagementImpl();            
             CandidatoVagaDialogo CandVagaDialogo = new CandidatoVagaDialogo();
@@ -45,7 +45,7 @@ class InserirCandidatoVagaDialogo {
             
             CandidatoDialogoImpl.insert(CandVagaDialogo);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+            if (CandidatoDialogoImpl.getCandidatoVagaDialogoCod(CPF, Cod_Cargo, CNPJ, Dat_Publicacao, Dat_Dialogo) == null) {
                 String Erro = "Erro ao inserir Candidato Vaga Dialogo";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);

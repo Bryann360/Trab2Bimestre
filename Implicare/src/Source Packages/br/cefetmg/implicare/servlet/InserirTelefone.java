@@ -19,7 +19,7 @@ class InserirTelefone {
         String jsp="";
         try {
             
-            Long CPF_CNPJ = Long.parseLong(request.getParameter("CPF_CNPJ"));
+            Long CPF_CNPJ = (Long) request.getSession().getAttribute("CPF_CNPJ");
             String Num_Telefone = request.getParameter("Num_Telefone");
             String Tipo_Telefone = request.getParameter("Tipo_Telefone");
             int DDD = Integer.parseInt(request.getParameter("DDD"));
@@ -36,7 +36,7 @@ class InserirTelefone {
             
             TelefoneImpl.insert(Telefone);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+            if (TelefoneImpl.getTelefoneCod(CPF_CNPJ, Num_Telefone) == null) {
                 String Erro = "Erro ao inserir Telefone";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);

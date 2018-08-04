@@ -21,7 +21,7 @@ class AlterarFormacaoAcademica {
         String jsp = "";
         try {
 
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
             int Seq_Formacao = Integer.parseInt(request.getParameter("Seq_Formacao"));
             String Instituicao_Ensino = request.getParameter("Instituicao_Ensino");
             int Cod_Area_Estudo = Integer.parseInt(request.getParameter("Cod_Area_Estudo"));
@@ -43,11 +43,11 @@ class AlterarFormacaoAcademica {
             Form.setData_Termino(Dat_Termino);
             Form.setDesc_Formacao_Academica(Desc_Formacao_Academica);
             
-            boolean Formacao = FormacaoImpl.update(CPF, Seq_Formacao, Form);
+            boolean Formacao = FormacaoImpl.update(CPF, Seq_Formacao, Cod_Area_Estudo, Form);
 
             if (Formacao =! false) {
                 jsp = "";
-                request.setAttribute("Formacao", Form);
+                request.setAttribute("FormacaoAcademica", Form);
             } else {
                 String Erro = "Erro ao Editar Formacao Academica";
                 jsp = "/WEB-Pages/Erro.jsp";

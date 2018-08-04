@@ -23,7 +23,7 @@ class AlterarCandidatoVaga {
 
             Long CPF = Long.parseLong(request.getParameter("CPF"));
             int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
-            Long CNPJ = Long.parseLong(request.getParameter("CNPJ"));
+            Long CNPJ = (Long) request.getSession().getAttribute("CPF_CNPJ");
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date Dat_Publicacao = (Date) formato.parse(request.getParameter("Dat_Publicacao"));
             String Status_Vaga = request.getParameter("Status_Vaga");
@@ -41,7 +41,7 @@ class AlterarCandidatoVaga {
 
             if (Candidato =! false) {
                 jsp = "";
-                request.setAttribute("Candidato", Cand);
+                request.setAttribute("CandidatoVaga", Cand);
             } else {
                 String Erro = "Erro ao Editar Candidato Vaga";
                 jsp = "/WEB-Pages/Erro.jsp";

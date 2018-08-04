@@ -21,7 +21,7 @@ class AlterarPessoaFisica {
         String jsp = "";
         try {
 
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
             String Nome = request.getParameter("Nome");
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date Data_Nascimento = (Date) formato.parse(request.getParameter("Data_Nascimento"));

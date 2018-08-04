@@ -7,6 +7,7 @@ package br.cefetmg.implicare.model.serviceImpl;
 
 import br.cefetmg.implicare.dao.VagaDao;
 import br.cefetmg.implicare.model.daoImpl.VagaDaoImpl;
+import br.cefetmg.implicare.model.domain.CargoInteresse;
 import br.cefetmg.implicare.model.domain.Vaga;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -49,8 +50,8 @@ public class VagaManagementImpl implements VagaManagement {
     }
 
     @Override
-    public List<Vaga> getVagaCod_Cargo(int Cod_Cargo) throws PersistenceException {
-        List<Vaga> result = VagaDao.getVagaCod_Cargo(Cod_Cargo);
+    public List<Vaga> getVagaCod_Cargo(List<CargoInteresse> CarInteresse) throws PersistenceException {
+        List<Vaga> result = VagaDao.getVagaCod_Cargo(CarInteresse);
         return result;
     }
 

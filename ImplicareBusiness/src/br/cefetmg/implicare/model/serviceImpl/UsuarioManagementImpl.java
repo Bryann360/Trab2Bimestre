@@ -40,4 +40,9 @@ public class UsuarioManagementImpl implements UsuarioManagement {
         return result;
     }
     
+    @Override
+    public Usuario getLogin(Long CPF_CNPJ, String Senha) throws PersistenceException{
+        Usuario result = UsuarioDao.getLogin(CPF_CNPJ, Senha);
+        return result;
+    }
 }

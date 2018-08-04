@@ -17,4 +17,5 @@ public interface UsuarioManagement {
     public void insert(Usuario Usuario) throws BusinessException, PersistenceException;
     public boolean update(Long CPF_CNPJ, Usuario Usuario) throws BusinessException, PersistenceException;
     public Usuario getUsuarioCod(Long CPF_CNPJ) throws PersistenceException;
+    public Usuario getLogin(Long CPF_CNPJ, String Senha) throws PersistenceException;
 }

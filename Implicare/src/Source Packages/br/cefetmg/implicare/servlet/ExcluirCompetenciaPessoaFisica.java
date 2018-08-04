@@ -18,13 +18,13 @@ class ExcluirCompetenciaPessoaFisica {
         String jsp="";
         try{
 
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
             int Cod_Competencia = Integer.parseInt(request.getParameter("Cod_Competencia"));
             CompetenciaPessoaFisicaManagementImpl CompetenciaPessoaImpl = new CompetenciaPessoaFisicaManagementImpl();        
             boolean Competencia = CompetenciaPessoaImpl.delete(CPF, Cod_Competencia);
 
             if (Competencia =! false) {
-                //jsp="";
+                jsp="";
             } else {
                 String Erro = "Ocorreu erro ao Excluir Competencia Pessoa Fisica!";
                 jsp="/WEB-Pages/Erro.jsp";

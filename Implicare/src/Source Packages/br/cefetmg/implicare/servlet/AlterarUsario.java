@@ -19,7 +19,7 @@ class AlterarUsario {
         String jsp = "";
         try {
 
-            Long CPF_CNPJ = Long.parseLong(request.getParameter("CPF_CNPJ"));
+            Long CPF_CNPJ = (Long) request.getSession().getAttribute("CPF_CNPJ");
             String Email = request.getParameter("Email");
             String Senha = request.getParameter("Senha");
             String Foto = request.getParameter("Foto");

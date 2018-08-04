@@ -18,10 +18,10 @@ class ExcluirTelefone {
         String jsp="";
         try{
 
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF_CNPJ = (Long) request.getSession().getAttribute("CPF_CNPJ");
             String Num_Telefone = request.getParameter("Num_Telefone");
             TelefoneManagementImpl TelefoneImpl = new TelefoneManagementImpl();        
-            boolean Telefone = TelefoneImpl.delete(CPF, Num_Telefone);
+            boolean Telefone = TelefoneImpl.delete(CPF_CNPJ, Num_Telefone);
 
             if (Telefone =! false) {
                 jsp="";

@@ -40,7 +40,7 @@ class InserirUsuario {
             
             UsuarioImpl.insert(Usuario);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+            if (UsuarioImpl.getUsuarioCod(CPF_CNPJ) == null) {
                 String Erro = "Erro ao inserir Usuario";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);

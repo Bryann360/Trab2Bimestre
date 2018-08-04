@@ -19,7 +19,7 @@ class InserirCargoInteresse {
         String jsp="";
         try {
             
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
             int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
             
             CargoInteresseManagementImpl CarInteresseImpl = new CargoInteresseManagementImpl();            
@@ -30,7 +30,7 @@ class InserirCargoInteresse {
             
             CarInteresseImpl.insert(Car);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
+            if (CarInteresseImpl.getCargoInteresseCod(CPF, Cod_Cargo) == null) {
                 String Erro = "Erro ao inserir Cargo Interesse";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);

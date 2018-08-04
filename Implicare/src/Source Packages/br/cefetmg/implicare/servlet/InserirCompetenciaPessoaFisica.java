@@ -19,7 +19,7 @@ class InserirCompetenciaPessoaFisica {
         String jsp="";
         try {
             
-            Long CPF = Long.parseLong(request.getParameter("CPF"));
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
             int Cod_Competencia = Integer.parseInt(request.getParameter("Cod_Competencia"));
             int Cod_Proficiencia = Integer.parseInt(request.getParameter("Cod_Proficiencia"));
             
@@ -32,8 +32,8 @@ class InserirCompetenciaPessoaFisica {
             
             CompetenciaPessoaImpl.insert(Comp);
 
-            if (CandidatoVaga.getLojaByCod(Cod_Loja)==null) {
-                String Erro = "Erro ao inserir Cargo Interesse";
+            if (CompetenciaPessoaImpl == null) {
+                String Erro = "Erro ao inserir Competencia Pessoa Fisica";
                 jsp="/WEB-Pages/Erro.jsp";
                 request.setAttribute("Erro", Erro);
             } else {

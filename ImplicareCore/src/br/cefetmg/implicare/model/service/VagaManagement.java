@@ -5,6 +5,7 @@
  */
 package br.cefetmg.implicare.model.service;
 
+import br.cefetmg.implicare.model.domain.CargoInteresse;
 import br.cefetmg.implicare.model.domain.Vaga;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -22,6 +23,6 @@ public interface VagaManagement {
     public boolean update(long CNPJ, int Cod_Cargo, Date Dat_Publicacao,Vaga Vaga) throws BusinessException, PersistenceException;
     public boolean delete(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
     public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException;
-    public List<Vaga> getVagaCod_Cargo(int Cod_Cargo) throws PersistenceException;
+    public List<Vaga> getVagaCod_Cargo(List<CargoInteresse> CarInteresse) throws PersistenceException;
     public Vaga getVagaCod(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
 }
