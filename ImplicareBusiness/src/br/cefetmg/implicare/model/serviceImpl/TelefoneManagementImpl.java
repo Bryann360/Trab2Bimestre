@@ -36,7 +36,8 @@ public class TelefoneManagementImpl implements TelefoneManagement {
 
     @Override
     public boolean delete(long CPF_CNPJ, String Num_Telefone) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = TelefoneDao.delete(CPF_CNPJ, Num_Telefone);
+        return result;
     }
 
     @Override

@@ -37,7 +37,8 @@ public class VagaManagementImpl implements VagaManagement {
 
     @Override
     public boolean delete(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = VagaDao.delete(CNPJ, Cod_Cargo, Dat_Publicacao);
+        return result;
     }
 
     @Override

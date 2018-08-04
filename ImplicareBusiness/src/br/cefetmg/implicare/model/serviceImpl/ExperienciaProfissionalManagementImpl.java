@@ -36,7 +36,8 @@ public class ExperienciaProfissionalManagementImpl implements ExperienciaProfiss
 
     @Override
     public boolean delete(Long CPF, int Seq_Experiencia, int Cod_Cargo) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = ExperienciaProfissionalDao.delete(CPF, Seq_Experiencia, Cod_Cargo);
+        return result;
     }
 
     @Override

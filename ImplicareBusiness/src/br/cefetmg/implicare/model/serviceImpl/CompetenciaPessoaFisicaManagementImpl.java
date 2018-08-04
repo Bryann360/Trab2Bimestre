@@ -31,7 +31,8 @@ public class CompetenciaPessoaFisicaManagementImpl implements CompetenciaPessoaF
 
     @Override
     public boolean delete(long CPF, int Cod_Competencia) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = CompetenciaPessoaFisicaDao.delete(CPF, Cod_Competencia);
+        return result;
     }
 
     @Override

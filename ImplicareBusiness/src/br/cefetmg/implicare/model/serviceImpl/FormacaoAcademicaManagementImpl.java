@@ -36,7 +36,8 @@ public class FormacaoAcademicaManagementImpl implements FormacaoAcademicaManagem
 
     @Override
     public boolean delete(long CPF, int Seq_Formacao, int Cod_Area_Estudo) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = FormacaoAcademicaDao.delete(CPF, Seq_Formacao, Cod_Area_Estudo);
+        return result;
     }
 
     @Override
