@@ -5,6 +5,7 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.serviceImpl.FormacaoAcademicaManagementImpl;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +15,30 @@ import javax.servlet.http.HttpServletRequest;
 class ExcluirFormacaoAcademica {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try{
+
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
+            int Seq_Formacao = Integer.parseInt(request.getParameter("Seq_Formacao"));
+            int Cod_Area_Estudo = Integer.parseInt(request.getParameter("Cod_Area_Estudo"));
+            
+            FormacaoAcademicaManagementImpl FormacaoImpl = new FormacaoAcademicaManagementImpl();  
+            
+            boolean Formacao = FormacaoImpl.delete(CPF, Seq_Formacao, Cod_Area_Estudo);
+
+            if (Formacao =! false) {
+                jsp="";
+            } else {
+                String Erro = "Ocorreu erro ao Excluir Formacao Academica!";
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro", Erro);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        
+        return jsp;
     }
     
 }

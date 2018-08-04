@@ -5,6 +5,7 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.serviceImpl.ExperienciaProfissionalManagementImpl;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +15,30 @@ import javax.servlet.http.HttpServletRequest;
 class ExcluirExperienciaProfissional {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String jsp="";
+        try{
+
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
+            int Seq_Experiencia = Integer.parseInt(request.getParameter("Seq_Experiencia"));
+            int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
+            
+            ExperienciaProfissionalManagementImpl ExperienciaImpl = new ExperienciaProfissionalManagementImpl();     
+            
+            boolean Experiencia = ExperienciaImpl.delete(CPF, Seq_Experiencia, Cod_Cargo);
+
+            if (Experiencia =! false) {
+                jsp="";
+            } else {
+                String Erro = "Ocorreu erro ao Excluir ExperienciaProfissional!";
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro", Erro);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        
+        return jsp;
     }
     
 }
