@@ -5,8 +5,8 @@
  */
 package br.cefetmg.implicare.servlet;
 
-import br.cefetmg.implicare.model.domain.Cargo;
-import br.cefetmg.implicare.model.serviceImpl.CargoManagementImpl;
+import br.cefetmg.implicare.model.domain.Cidade;
+import br.cefetmg.implicare.model.serviceImpl.CidadeManagementImpl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -15,17 +15,18 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Gabriel
  */
-class ListarCargo {
+class ListarCidade {
 
     static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            CargoManagementImpl CargoImpl = new CargoManagementImpl();
-            List<Cargo> listAll = new ArrayList<>();
-            listAll = CargoImpl.listAll();
+            CidadeManagementImpl CidadeImpl = new CidadeManagementImpl();
+            List<Cidade> Cidade = new ArrayList<>();
+            int Cod_Estado = Integer.parseInt(request.getParameter("Cod_Estado"));
+            Cidade = CidadeImpl.getCidades(Cod_Estado);
             
-            if (listAll != null) {
-                request.setAttribute("ListaCargo", listAll);
+            if (Cidade != null) {
+                request.setAttribute("ListaCidade", Cidade);
                 jsp = "/listarcategoria.jsp";
             } else {
                 String erro = "Nao existe registro!";

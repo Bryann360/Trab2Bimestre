@@ -5,10 +5,16 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author Gabriel
  */
 public class PesquisarCompetencia {
+    
+    static String execute(HttpServletRequest request) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -110,11 +110,23 @@ public class ImplicareServlet extends HttpServlet {
                 case "ListarAreaEstudo":
                     jsp = ListarAreaEstudo.execute(request);
                     break;
+                case "ListarCandidatoVaga":
+                    jsp = ListarCandidatoVaga.execute(request);
+                    break;
+                case "ListarCandidatoVagaDialogo":
+                    jsp = ListarCandidatoVagaDialogo.execute(request);
+                    break;
                 case "ListarCargo":
                     jsp = ListarCargo.execute(request);
                     break;
+                case "ListarCargoInteresse":
+                    jsp = ListarCargoInteresse.execute(request);
+                    break;
+                case "ListarCargoPessoaFisica":
+                    jsp = ListarCargoPessoaFisica.execute(request);
+                    break;
                 case "ListarCidade":
-                    jsp = ListarCidadeServlet.execute(request);
+                    jsp = ListarCidade.execute(request);
                     break;
                 case "ListarCompetencia":
                     jsp = ListarCompetencia.execute(request);
@@ -122,8 +134,50 @@ public class ImplicareServlet extends HttpServlet {
                 case "ListarEstado":
                     jsp = ListarEstado.execute(request);
                     break;
+                case "ListarExperienciaProfissional":
+                    jsp = ListarExperienciaProfissional.execute(request);
+                    break;
+                case "ListarFormacaoAcademica":
+                    jsp = ListarFormacaoAcademica.execute(request);
+                    break;
                 case "ListarProficiencia":
                     jsp = ListarProficiencia.execute(request);
+                    break;
+                case "ListarTelefone":
+                    jsp = ListarTelefone.execute(request);
+                    break;
+                case "ListarVaga":
+                    jsp = ListarVaga.execute(request);
+                    break;
+                case "ListarVagaPessoaFisica":
+                    jsp = ListarVagaPessoaFisica.execute(request);
+                    break;
+                case "Logar":
+                    jsp = Login.execute(request);
+                    break;
+                case "PesquisarAreaEstudo":
+                    jsp = PesquisarAreaEstudo.execute(request);
+                    break;
+                case "PesquisarCargo":
+                    jsp = PesquisarCargo.execute(request);
+                    break;
+                case "PesquisarCompetencia":
+                    jsp = PesquisarCompetencia.execute(request);
+                    break;
+                case "PesquisarEmpresa":
+                    jsp = PesquisarEmpresa.execute(request);
+                    break;
+                case "PesquisarEstado":
+                    jsp = PesquisarEstado.execute(request);
+                    break;
+                case "PesquisarPessoaFisica":
+                    jsp = PesquisarPessoaFisica.execute(request);
+                    break;
+                case "PesquisarUsuario":
+                    jsp = PesquisarUsuario.execute(request);
+                    break;
+                case "PesquisarProficiencia":
+                    jsp= PesquisarProficiencia.execute(request);
                     break;
                 default:
                     jsp = "/WEB-Pages/Erro.jsp";

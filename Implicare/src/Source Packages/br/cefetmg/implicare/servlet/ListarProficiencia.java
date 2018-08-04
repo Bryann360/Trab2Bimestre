@@ -5,6 +5,10 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.Proficiencia;
+import br.cefetmg.implicare.model.serviceImpl.ProficienciaManagementImpl;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +18,26 @@ import javax.servlet.http.HttpServletRequest;
 class ListarProficiencia {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp = "";
+        try {
+            ProficienciaManagementImpl ProficienciaImpl = new ProficienciaManagementImpl();
+            List<Proficiencia> listAll = new ArrayList<>();
+            listAll = ProficienciaImpl.listAll();
+            
+            if (listAll != null) {
+                request.setAttribute("ListaProficiencia", listAll);
+                jsp = "/listarcategoria.jsp";
+            } else {
+                String erro = "Nao existe registro!";
+                request.setAttribute("erro", erro);
+                jsp = "/erro.jsp";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
     }
     
 }
