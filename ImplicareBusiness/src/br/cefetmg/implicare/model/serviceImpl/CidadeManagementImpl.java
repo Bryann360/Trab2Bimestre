@@ -30,8 +30,8 @@ public class CidadeManagementImpl implements CidadeManagement {
     }
 
     @Override
-    public Cidade getCidadeCod(int Cod_Estado, int Cod_Cidade) throws PersistenceException {
-        Cidade result = CidadeDao.getCidadeCod(Cod_Estado, Cod_Cidade);
+    public Cidade getCidadeCod(int Cod_Cidade) throws PersistenceException {
+        Cidade result = CidadeDao.getCidadeCod(Cod_Cidade);
         return result;
     }
     

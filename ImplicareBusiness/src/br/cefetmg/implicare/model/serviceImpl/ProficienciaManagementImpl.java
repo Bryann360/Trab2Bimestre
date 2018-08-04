@@ -30,7 +30,7 @@ public class ProficienciaManagementImpl implements ProficienciaManagement {
     }
 
     @Override
-    public Proficiencia getLojaByCod(int Cod_Proficiencia) throws PersistenceException {
+    public Proficiencia getProficienciaCod(int Cod_Proficiencia) throws PersistenceException {
         Proficiencia result = ProficienciaDao.getProficienciaCod(Cod_Proficiencia);
         return result;
     }

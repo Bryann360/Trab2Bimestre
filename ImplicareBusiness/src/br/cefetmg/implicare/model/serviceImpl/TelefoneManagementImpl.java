@@ -40,8 +40,14 @@ public class TelefoneManagementImpl implements TelefoneManagement {
     }
 
     @Override
-    public List<Telefone> getTelefone(long CPF_CNPJ) throws PersistenceException {
-        List<Telefone> result = TelefoneDao.getTelefone(CPF_CNPJ);
+    public List<Telefone> getTelefones(long CPF_CNPJ) throws PersistenceException {
+        List<Telefone> result = TelefoneDao.getTelefones(CPF_CNPJ);
+        return result;
+    }
+
+    @Override
+    public Telefone getTelefoneCod(long CPF_CNPJ, String Num_Telefone) throws PersistenceException {
+        Telefone result = TelefoneDao.getTelefoneCod(CPF_CNPJ, Num_Telefone);
         return result;
     }
     

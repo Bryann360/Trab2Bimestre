@@ -5,31 +5,31 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.CargoAreaEstudoDao;
+import br.cefetmg.implicare.model.daoImpl.CargoAreaEstudoDaoImpl;
 import br.cefetmg.implicare.model.domain.CargoAreaEstudo;
+import br.cefetmg.implicare.model.domain.FormacaoAcademica;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.implicare.model.service.CargoAreaEstudoManagement;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
  * @author Gabriel
  */
 public class CargoAreaEstudoMangementImpl implements CargoAreaEstudoManagement {
-
-    @Override
-    public void insert(CargoAreaEstudo CargoAreaEstudo) throws BusinessException, PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private final CargoAreaEstudoDao CargoAreaEstudoDao;
+    
+    public CargoAreaEstudoMangementImpl(){
+        CargoAreaEstudoDao = new CargoAreaEstudoDaoImpl();
     }
-
+    
     @Override
-    public boolean delete(int Cod_Area_Estudo, int Cod_Cargo) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<CargoAreaEstudo> listAll() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Set<CargoAreaEstudo> CargoAreaEstudo(List<FormacaoAcademica> FormAcad) throws BusinessException, PersistenceException {
+        Set<CargoAreaEstudo> result = CargoAreaEstudoDao.CargoAreaEstudo(FormAcad);
+        return result;
     }
     
 }

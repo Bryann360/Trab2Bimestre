@@ -35,9 +35,15 @@ public class CargoInteresseManagementImpl implements CargoInteresseManagement {
     }
 
     @Override
-    public List<CargoInteresse> getCargoInteresse(long CPF) throws PersistenceException {
-        List<CargoInteresse> result = CargoInteresseDao.getCargoInteresse(CPF);
-        return result; 
+    public List<CargoInteresse> getCargosInteresse(long CPF) throws PersistenceException {
+        List<CargoInteresse> result = CargoInteresseDao.getCargosInteresse(CPF);
+        return result;
+    }
+
+    @Override
+    public CargoInteresse getCargoInteresseCod(long CPF, int Cod_Cargo) throws PersistenceException {
+        CargoInteresse result = CargoInteresseDao.getCargoInteresseCod(CPF, Cod_Cargo);
+        return result;
     }
     
 }

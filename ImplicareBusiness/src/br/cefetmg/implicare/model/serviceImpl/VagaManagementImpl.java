@@ -24,7 +24,7 @@ public class VagaManagementImpl implements VagaManagement {
     public VagaManagementImpl(){
         VagaDao = new VagaDaoImpl();
     }
-    
+
     @Override
     public void insert(Vaga Vaga) throws BusinessException, PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -38,6 +38,12 @@ public class VagaManagementImpl implements VagaManagement {
     @Override
     public boolean delete(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException {
+        List<Vaga> result = VagaDao.getVagaCNPJ(CNPJ);
+        return result;
     }
 
     @Override

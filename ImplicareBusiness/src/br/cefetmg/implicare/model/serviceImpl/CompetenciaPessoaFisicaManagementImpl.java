@@ -23,7 +23,7 @@ public class CompetenciaPessoaFisicaManagementImpl implements CompetenciaPessoaF
     public CompetenciaPessoaFisicaManagementImpl(){
         CompetenciaPessoaFisicaDao = new CompetenciaPessoaFisicaDaoImpl();
     }
-    
+
     @Override
     public void insert(CompetenciaPessoaFisica CompetenciaPessoaFisica) throws BusinessException, PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -35,8 +35,14 @@ public class CompetenciaPessoaFisicaManagementImpl implements CompetenciaPessoaF
     }
 
     @Override
-    public List<CompetenciaPessoaFisica> getCompetenciaPessoaFisica(long CPF) throws PersistenceException {
-        List<CompetenciaPessoaFisica> result = CompetenciaPessoaFisicaDao.getCompetenciaPessoaFisica(CPF);
+    public List<CompetenciaPessoaFisica> getCompetenciasPessoaFisica(long CPF) throws PersistenceException {
+        List<CompetenciaPessoaFisica> result = CompetenciaPessoaFisicaDao.getCompetenciasPessoaFisica(CPF);
+        return result;
+    }
+
+    @Override
+    public CompetenciaPessoaFisica getCompetenciaPessoaFisicaCod(long CPF, int Cod_Competencia) throws PersistenceException {
+        CompetenciaPessoaFisica result = CompetenciaPessoaFisicaDao.getCompetenciaPessoaFisicaCod(CPF, Cod_Competencia);
         return result;
     }
     

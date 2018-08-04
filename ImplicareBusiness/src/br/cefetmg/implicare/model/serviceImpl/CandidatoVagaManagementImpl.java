@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.model.serviceImpl;
 
+import br.cefetmg.implicare.dao.CandidatoVagaDao;
+import br.cefetmg.implicare.model.daoImpl.CandidatoVagaDaoImpl;
 import br.cefetmg.implicare.model.domain.CandidatoVaga;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
@@ -17,7 +19,12 @@ import java.util.List;
  * @author Gabriel
  */
 public class CandidatoVagaManagementImpl implements CandidatoVagaManagement {
-
+    private final CandidatoVagaDao CandidatoVagaDao;
+    
+    public CandidatoVagaManagementImpl(){
+        CandidatoVagaDao = new CandidatoVagaDaoImpl();
+    }
+    
     @Override
     public void insert(CandidatoVaga CandidatoVaga) throws BusinessException, PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -30,7 +37,14 @@ public class CandidatoVagaManagementImpl implements CandidatoVagaManagement {
 
     @Override
     public List<CandidatoVaga> getCandidatosVaga(int Cod_Cargo, long CNPJ, Date Dat_Publicacao) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<CandidatoVaga> result = CandidatoVagaDao.getCandidatosVaga(Cod_Cargo, CNPJ, Dat_Publicacao);
+        return result;
+    }
+
+    @Override
+    public CandidatoVaga getCandidatoVagaCod(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao) throws PersistenceException {
+        CandidatoVaga result = CandidatoVagaDao.getCandidatoVagaCod(CPF, Cod_Cargo, CNPJ, Dat_Publicacao);
+        return result;
     }
     
 }

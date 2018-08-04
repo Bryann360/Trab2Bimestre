@@ -8,9 +8,11 @@ package br.cefetmg.implicare.model.serviceImpl;
 import br.cefetmg.implicare.dao.CargoDao;
 import br.cefetmg.implicare.model.daoImpl.CargoDaoImpl;
 import br.cefetmg.implicare.model.domain.Cargo;
+import br.cefetmg.implicare.model.domain.CargoAreaEstudo;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.implicare.model.service.CargoManagement;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -28,11 +30,17 @@ public class CargoManagementImpl implements CargoManagement {
         List<Cargo> result = CargoDao.listAll();
         return result;
     }
-
+    
+     @Override
+    public List<Cargo> getCargos(Set<CargoAreaEstudo> CargoArea) throws PersistenceException {
+        List<Cargo> result = CargoDao.getCargos(CargoArea);
+        return result;
+    }
+    
     @Override
     public Cargo getCargoCod(int Cod_Cargo) throws PersistenceException {
         Cargo result = CargoDao.getCargoCod(Cod_Cargo);
         return result;
     }
-    
+
 }
