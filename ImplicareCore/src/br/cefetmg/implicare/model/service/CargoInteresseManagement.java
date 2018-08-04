@@ -13,9 +13,12 @@ import java.util.List;
 /**
  *
  * @author Andre Matheus
+ * @author Gabriel
+ * 
  */
 public interface CargoInteresseManagement {
     public void insert(CargoInteresse CargoInteresse) throws BusinessException, PersistenceException;
     public boolean delete(long CPF, int Cod_Cargo) throws PersistenceException;
-    public List<CargoInteresse> getCargoInteresse(long CPF) throws PersistenceException;
+    public List<CargoInteresse> getCargosInteresse(long CPF) throws PersistenceException;
+    public CargoInteresse getCargoInteresseCod(long CPF, int Cod_Cargo) throws PersistenceException;
 }

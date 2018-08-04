@@ -14,9 +14,11 @@ import java.util.List;
 /**
  *
  * @author Andre Matheus
+ * @author Gabriel
  */
 public interface CandidatoVagaManagement {
     public void insert(CandidatoVaga CandidatoVaga) throws BusinessException, PersistenceException;
     public boolean update(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao, CandidatoVaga CandidatoVaga) throws BusinessException, PersistenceException;
     public List<CandidatoVaga> getCandidatosVaga(int Cod_Cargo, long CNPJ, Date Dat_Publicacao) throws PersistenceException;
+    public CandidatoVaga getCandidatoVagaCod(long CPF, int Cod_Cargo, long CNPJ, Date Dat_Publicacao) throws PersistenceException;
 }

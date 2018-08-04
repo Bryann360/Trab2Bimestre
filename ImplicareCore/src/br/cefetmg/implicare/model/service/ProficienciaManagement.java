@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface ProficienciaManagement {
     public List<Proficiencia> listAll() throws PersistenceException;
-    public Proficiencia getLojaByCod(int Cod_Proficiencia) throws PersistenceException;
+    public Proficiencia getProficienciaCod(int Cod_Proficiencia) throws PersistenceException;
 }

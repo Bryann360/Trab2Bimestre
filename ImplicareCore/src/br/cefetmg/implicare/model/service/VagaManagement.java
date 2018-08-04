@@ -14,11 +14,14 @@ import java.util.List;
 /**
  *
  * @author Andre Matheus
+ * @author Gabriel
+ * 
  */
 public interface VagaManagement {
     public void insert(Vaga Vaga) throws BusinessException, PersistenceException;
     public boolean update(long CNPJ, int Cod_Cargo, Date Dat_Publicacao,Vaga Vaga) throws BusinessException, PersistenceException;
     public boolean delete(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
+    public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException;
     public List<Vaga> getVagaCod_Cargo(int Cod_Cargo) throws PersistenceException;
     public Vaga getVagaCod(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
 }

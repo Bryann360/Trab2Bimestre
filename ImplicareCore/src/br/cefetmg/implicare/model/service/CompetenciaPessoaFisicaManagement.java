@@ -13,9 +13,12 @@ import java.util.List;
 /**
  *
  * @author Andre Matheus
+ * @author Gabriel
+ * 
  */
 public interface CompetenciaPessoaFisicaManagement {
     public void insert(CompetenciaPessoaFisica CompetenciaPessoaFisica) throws BusinessException, PersistenceException;
     public boolean delete(long CPF, int Cod_Competencia) throws PersistenceException;
-    public List<CompetenciaPessoaFisica> getCompetenciaPessoaFisica(long CPF) throws PersistenceException;
+    public List<CompetenciaPessoaFisica> getCompetenciasPessoaFisica(long CPF) throws PersistenceException;  
+    public CompetenciaPessoaFisica getCompetenciaPessoaFisicaCod(long CPF, int Cod_Competencia) throws PersistenceException;
 }

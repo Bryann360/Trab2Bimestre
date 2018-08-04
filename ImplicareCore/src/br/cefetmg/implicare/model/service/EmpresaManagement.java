@@ -5,19 +5,16 @@
  */
 package br.cefetmg.implicare.model.service;
 
-import br.cefetmg.implicare.model.domain.CargoAreaEstudo;
-import br.cefetmg.implicare.model.domain.FormacaoAcademica;
+import br.cefetmg.implicare.model.domain.Empresa;
 import br.cefetmg.implicare.model.exception.BusinessException;
 import br.cefetmg.implicare.model.exception.PersistenceException;
-import java.util.List;
-import java.util.Set;
 
 /**
  *
- * @author Andre Matheus
  * @author Gabriel
- * 
  */
-public interface CargoAreaEstudoManagement {
-    public Set<CargoAreaEstudo> CargoAreaEstudo(List<FormacaoAcademica> FormAcad) throws BusinessException, PersistenceException;
+public interface EmpresaManagement {
+    public void insert(Empresa Empresa) throws BusinessException, PersistenceException;
+    public boolean update(Long CNPJ,Empresa Empresa) throws BusinessException, PersistenceException;
+    public Empresa getEmpresaCod(Long CNPJ) throws PersistenceException;
 }
