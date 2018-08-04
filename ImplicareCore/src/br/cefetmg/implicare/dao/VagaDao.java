@@ -5,6 +5,7 @@
  */
 package br.cefetmg.implicare.dao;
 
+import br.cefetmg.implicare.model.domain.CargoInteresse;
 import br.cefetmg.implicare.model.domain.Vaga;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import java.sql.Date;
@@ -19,6 +20,6 @@ public interface VagaDao {
     public boolean update(long CNPJ, int Cod_Cargo, Date Dat_Publicacao,Vaga Vaga) throws PersistenceException;
     public boolean delete(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
     public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException;
-    public List<Vaga> getVagaCod_Cargo(int Cod_Cargo) throws PersistenceException;
+    public List<Vaga> getVagaCod_Cargo(List<CargoInteresse> CarInteresse) throws PersistenceException;
     public Vaga getVagaCod(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
 }

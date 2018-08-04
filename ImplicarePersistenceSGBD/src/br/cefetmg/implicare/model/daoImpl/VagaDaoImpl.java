@@ -6,6 +6,7 @@
 package br.cefetmg.implicare.model.daoImpl;
 
 import br.cefetmg.implicare.dao.VagaDao;
+import br.cefetmg.implicare.model.domain.CargoInteresse;
 import br.cefetmg.implicare.model.domain.Vaga;
 import br.cefetmg.implicare.model.exception.PersistenceException;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
@@ -158,37 +159,40 @@ public class VagaDaoImpl implements VagaDao{
     }
     
     @Override
-    public List<Vaga> getVagaCod_Cargo(int Cod_Cargo) throws PersistenceException{
+    public List<Vaga> getVagaCod_Cargo(List<CargoInteresse> CarInteresse) throws PersistenceException{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Vaga WHERE Cod_Cargo = ? ORDER BY Dat_Publicacao;";
-
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, Cod_Cargo);
-            ResultSet rs = ps.executeQuery();
-
             List<Vaga> Vaga = new ArrayList<>();
             
-            if (rs.next()) {
-                do {
-                    Vaga Vag = new Vaga();
-                    
-                    Vag.setCNPJ(rs.getLong("CNPJ"));
-                    Vag.setCod_Cargo(rs.getInt("Cod_Cargo"));
-                    Vag.setDat_Publicacao(rs.getDate("Dat_Publicacao"));
-                    Vag.setNum_Vagas(rs.getInt("Num_Vagas"));
-                    Vag.setCarga_Horaria(rs.getInt("Caraga_Horaria"));
-                    Vag.setRemuneracao(rs.getDouble("Remuneracao"));
-                    Vag.setDesc_Vaga(rs.getString("Desc_Vaga"));
-                    Vag.setStatus_Vaga(rs.getInt("Status_Vaga"));
-                    
-                    Vaga.add(Vag);
-                } while (rs.next());
-            }
+            for (CargoInteresse Car : CarInteresse) {
+                String sql = "SELECT * FROM Vaga WHERE Cod_Cargo = ?";
+                
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, Car.getCod_Cargo());
+                ResultSet rs = ps.executeQuery();
+                
+                if (rs.next()) {
+                    do{
+                        Vaga Vag = new Vaga();
 
-            rs.close();
-            ps.close();
+                        Vag.setCNPJ(rs.getLong("CNPJ"));
+                        Vag.setCod_Cargo(rs.getInt("Cod_Cargo"));
+                        Vag.setDat_Publicacao(rs.getDate("Dat_Publicacao"));
+                        Vag.setNum_Vagas(rs.getInt("Num_Vagas"));
+                        Vag.setCarga_Horaria(rs.getInt("Caraga_Horaria"));
+                        Vag.setRemuneracao(rs.getDouble("Remuneracao"));
+                        Vag.setDesc_Vaga(rs.getString("Desc_Vaga"));
+                        Vag.setStatus_Vaga(rs.getInt("Status_Vaga"));
+
+                        Vaga.add(Vag);
+                    } while (rs.next());
+                }
+                
+                rs.close();
+                ps.close();
+            }
+            
             connection.close();
 
             return Vaga;
