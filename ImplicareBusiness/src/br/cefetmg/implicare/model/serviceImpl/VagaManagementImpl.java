@@ -44,7 +44,7 @@ public class VagaManagementImpl implements VagaManagement {
     }
 
     @Override
-    public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException {
+    public List<Vaga> getVagaCNPJ(long CNPJ) throws PersistenceException {
         List<Vaga> result = VagaDao.getVagaCNPJ(CNPJ);
         return result;
     }

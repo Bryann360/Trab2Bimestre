@@ -5,6 +5,10 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.Vaga;
+import br.cefetmg.implicare.model.serviceImpl.VagaManagementImpl;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +18,29 @@ import javax.servlet.http.HttpServletRequest;
 public class ListarVaga {
     
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp = "";
+        try {
+            VagaManagementImpl VagaImpl = new VagaManagementImpl();
+            List<Vaga> Vaga = new ArrayList<>();
+            
+            Long CNPJ = (Long) request.getSession().getAttribute("CPF_CNPJ");
+            
+            Vaga = VagaImpl.getVagaCNPJ(CNPJ);
+ 
+            if (Vaga != null) {
+                request.setAttribute("ListaVagaEmpresa", Vaga);
+                jsp = "/listarcategoria.jsp";
+            } else {
+                String erro = "Nao existe registro!";
+                request.setAttribute("erro", erro);
+                jsp = "/erro.jsp";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
     }
     
 }

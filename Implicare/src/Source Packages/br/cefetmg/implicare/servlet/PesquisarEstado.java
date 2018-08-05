@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.Estado;
+import br.cefetmg.implicare.model.serviceImpl.EstadoManagementImpl;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +16,27 @@ import javax.servlet.http.HttpServletRequest;
 public class PesquisarEstado {
     
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try{
+            int Cod_Estado = Integer.parseInt(request.getParameter("Cod_Estado"));
+            
+            EstadoManagementImpl EstadoImpl = new EstadoManagementImpl();
+            Estado Est = new Estado();
+            
+            Est = EstadoImpl.getEstadoCod(Cod_Estado);
+
+            if (Est == null) {
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro","Estado Nao Encontrado");
+            } else {
+                jsp="/Web-Pages/VisualizarEstoque.jsp";
+                request.setAttribute("Cargo", Est);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        return jsp;
     }
     
 }

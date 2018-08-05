@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.Competencia;
+import br.cefetmg.implicare.model.serviceImpl.CompetenciaManagementImpl;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +16,27 @@ import javax.servlet.http.HttpServletRequest;
 public class PesquisarCompetencia {
     
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try{
+            int Cod_Competencia = Integer.parseInt(request.getParameter("Cod_Competencia"));
+            
+            CompetenciaManagementImpl CompetenciaImpl = new CompetenciaManagementImpl();
+            Competencia Comp = new Competencia();
+            
+            Comp = CompetenciaImpl.getCompetenciaCod(Cod_Competencia);
+
+            if (Comp == null) {
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro","Competencia Nao Encontrado");
+            } else {
+                jsp="/Web-Pages/VisualizarEstoque.jsp";
+                request.setAttribute("Competencia", Comp);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        return jsp;
     }
     
 }

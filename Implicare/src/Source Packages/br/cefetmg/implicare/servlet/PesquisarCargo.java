@@ -5,6 +5,8 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.Cargo;
+import br.cefetmg.implicare.model.serviceImpl.CargoManagementImpl;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +16,27 @@ import javax.servlet.http.HttpServletRequest;
 public class PesquisarCargo {
     
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp="";
+        try{
+            int Cod_Cargo = Integer.parseInt(request.getParameter("Cod_Cargo"));
+            
+            CargoManagementImpl CargoImpl = new CargoManagementImpl();
+            Cargo Car = new Cargo();
+            
+            Car = CargoImpl.getCargoCod(Cod_Cargo);
+
+            if (Car == null) {
+                jsp="/WEB-Pages/Erro.jsp";
+                request.setAttribute("Erro","Cargo Nao Encontrado");
+            } else {
+                jsp="/Web-Pages/VisualizarEstoque.jsp";
+                request.setAttribute("Cargo", Car);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp="";
+        }
+        return jsp;
     }
     
 }

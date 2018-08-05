@@ -19,7 +19,7 @@ public interface VagaDao {
     public void insert(Vaga Vaga) throws PersistenceException;
     public boolean update(long CNPJ, int Cod_Cargo, Date Dat_Publicacao,Vaga Vaga) throws PersistenceException;
     public boolean delete(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
-    public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException;
+    public List<Vaga> getVagaCNPJ(long CNPJ) throws PersistenceException;
     public List<Vaga> getVagaCod_Cargo(List<CargoInteresse> CarInteresse) throws PersistenceException;
     public Vaga getVagaCod(long CNPJ, int Cod_Cargo, Date Dat_Publicacao) throws PersistenceException;
 }

@@ -51,7 +51,7 @@ class AlterarExperienciaProfissional {
 
             if (Experiencia =! false) {
                 jsp = "";
-                request.setAttribute("CandidatoVaga", Exp);
+                request.setAttribute("ExperienciaProfissional", Exp);
             } else {
                 String Erro = "Erro ao Editar Experiencia Profissional";
                 jsp = "/WEB-Pages/Erro.jsp";

@@ -5,6 +5,10 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.CargoInteresse;
+import br.cefetmg.implicare.model.serviceImpl.CargoInteresseManagementImpl;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +18,29 @@ import javax.servlet.http.HttpServletRequest;
 public class ListarCargoInteresse {
     
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp = "";
+        try {
+            CargoInteresseManagementImpl CarInteresseImpl = new CargoInteresseManagementImpl();
+            List<CargoInteresse> CargoInt = new ArrayList<>();
+            
+            Long CPF = (Long) request.getSession().getAttribute("CPF_CNPJ");
+            
+            CargoInt = CarInteresseImpl.getCargosInteresse(CPF);
+ 
+            if (CargoInt != null) {
+                request.setAttribute("ListaCargoInteresse", CargoInt);
+                jsp = "/listarcategoria.jsp";
+            } else {
+                String erro = "Nao existe registro!";
+                request.setAttribute("erro", erro);
+                jsp = "/erro.jsp";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
     }
     
 }

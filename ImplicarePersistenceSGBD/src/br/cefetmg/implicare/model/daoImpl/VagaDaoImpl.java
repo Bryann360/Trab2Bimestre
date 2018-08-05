@@ -118,14 +118,14 @@ public class VagaDaoImpl implements VagaDao{
     }
     
     @Override
-    public List<Vaga> getVagaCNPJ(int CNPJ) throws PersistenceException {
+    public List<Vaga> getVagaCNPJ(long CNPJ) throws PersistenceException {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM Vaga WHERE CNPJ = ? ORDER BY Cod_Cargo, Dat_Publicacao";
 
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, CNPJ);
+            ps.setLong(1, CNPJ);
             ResultSet rs = ps.executeQuery();
 
             List<Vaga> Vaga = new ArrayList<>();

@@ -5,6 +5,10 @@
  */
 package br.cefetmg.implicare.servlet;
 
+import br.cefetmg.implicare.model.domain.ExperienciaProfissional;
+import br.cefetmg.implicare.model.serviceImpl.ExperienciaProfissionalManagementImpl;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,7 +18,29 @@ import javax.servlet.http.HttpServletRequest;
 public class ListarExperienciaProfissional {
 
     static String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String jsp = "";
+        try {
+            ExperienciaProfissionalManagementImpl ExperienciaImpl = new ExperienciaProfissionalManagementImpl();
+            List<ExperienciaProfissional> Exp = new ArrayList<>();
+            
+            Long CPF= (Long) request.getSession().getAttribute("CPF_CNPJ");
+            
+            Exp = ExperienciaImpl.getExperienciasProfissionais(CPF);
+ 
+            if (Exp != null) {
+                request.setAttribute("ListaExperienciaProfissional", Exp);
+                jsp = "/listarcategoria.jsp";
+            } else {
+                String erro = "Nao existe registro!";
+                request.setAttribute("erro", erro);
+                jsp = "/erro.jsp";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
     }
     
 }
