@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Gabriel
  */
-class AlterarUsario {
+class AlterarUsuario {
 
     static String execute(HttpServletRequest request) {
         String jsp = "";
