@@ -48,7 +48,7 @@ public class ImplicareServlet extends HttpServlet {
                     jsp = AlterarTelefone.execute(request);
                     break;
                 case "AlterarUsuario":
-                    jsp = AlterarUsario.execute(request);
+                    jsp = AlterarUsuario.execute(request);
                     break;
                 case "AlterarVaga":
                     jsp = AlterarVaga.execute(request);
