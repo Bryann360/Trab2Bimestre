@@ -1,4 +1,4 @@
-package br.cefetmg.implicare.servlet.Exceptions;
+package br.cefetmg.implicare.Exceptions;
 
 import javax.servlet.ServletException;
 
