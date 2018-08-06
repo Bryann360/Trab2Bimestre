@@ -1,6 +1,6 @@
 package br.cefetmg.implicare.servlet;
 
-import br.cefetmg.implicare.Exceptions.InvalidRequestException;
+import br.cefetmg.implicare.exceptions.InvalidRequestException;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
